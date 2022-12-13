@@ -5,6 +5,7 @@ import time
 import log.server_log_config
 from functools import wraps
 import inspect
+import select
 
 logger=logging.getLogger('server')
 
@@ -23,31 +24,53 @@ def log(func):
     return call
 
 @log
-def send(msg, client):
-    try:
-        client.send(msg.encode('utf-8'))
-        logger.debug(f'{msg} is sent')
-    except BaseException as e:
-        logger.error(e)
-
-def main123():
-    send(msg, client)
-
-
-def recieve(client):
-    try:
-        data = client.recv(10000)
-        if json.loads(data)['action'] == 'presence':
-            logger.debug('got presence')
-            return json.dumps({'response': 200, 'alert': 'ok'})
-        elif json.loads(data)['action'] == 'msg':
-            logger.debug('got message')
-            return json.dumps({'response': 200, 'alert': 'ok'})
-    except BaseException as e:
-        logger.error(e)
-        return json.dumps({'response': 400, 'alert': 'error'})
+def send(msgs, w, clients):
+    for client in w:
+        try:
+            for msg in msgs:
+                msg=msg.encode('utf-8')
+                for c in clients:
+                    try:
+                        c.send(msg)
+                        logger.debug(f'{msg} is sent')
+                    except:
+                        c.close()
+                        clients.remove(c)
+                        logger.error('Клиент отключился')
+        except BaseException as e:
+            logger.error(e)
 
 
+def recieve(r, clients):
+    msgs=[]
+    for client in r:
+        try:
+            data = client.recv(100000).decode('utf-8')
+            try:
+                data= data.replace('}{', '};{')
+                msgs_in_data=data.split(';')
+                for msg in msgs_in_data:
+                    json_data = json.loads(msg)
+                    if json_data['action'] == 'presence':
+                        logger.debug('got presence')
+                        return json.dumps({'response': 200, 'alert': 'ok'})
+                    elif json_data['action'] == 'msg':
+                        logger.debug('got message')
+                        msgs.append(json_data['text'] + ' from ' + json_data['user']['name'])
+                return msgs
+            except:
+                json_data = json.loads(data)
+                if json_data['action'] == 'presence':
+                    logger.debug('got presence')
+                    return json.dumps({'response': 200, 'alert': 'ok'})
+                elif json_data['action'] == 'msg':
+                    logger.debug('got message')
+                    msgs.append(json_data['text']+' from '+json_data['user']['name'])
+                    return msgs
+        except BaseException as e:
+            logger.error(e)
+            clients.remove(client)
+            return json.dumps({'response': 400, 'alert': 'error'})
 
 def get_socket(port):
     s=socket(AF_INET, SOCK_STREAM)
@@ -57,18 +80,26 @@ def get_socket(port):
 
 if __name__=='__main__':
     s= get_socket(port)
+    clients=[]
     while True:
         try:
             client, addr = s.accept()
 
             logger.debug(f'Запрос получен от {str(addr)}')
 
-            msg = recieve(client)
+            try:
+                clients.append(client)
+                r=[]
+                w=[]
+                r, w, e = select.select(clients, clients, [], 10)
+            except:
+                pass
 
-            #send(msg, client)
-            main123()
+            msgs = recieve(r, clients)
+            send(msgs, w, clients)
 
-            client.close()
+            msgs = recieve(r, clients)
+            send(msgs, w, clients)
 
         except OSError as e:
             logger.error(e)
