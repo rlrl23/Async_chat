@@ -13,8 +13,6 @@ port=7777
 host='localhost'
 
 
-# def m_func(log):
-#     print(m_func.__name__)
 def log(func):
     @wraps(func)
     def call(*args, **kwargs):
@@ -24,53 +22,75 @@ def log(func):
     return call
 
 @log
-def send(msgs, w, clients):
-    for client in w:
-        try:
-            for msg in msgs:
-                msg=msg.encode('utf-8')
-                for c in clients:
-                    try:
-                        c.send(msg)
-                        logger.debug(f'{msg} is sent')
-                    except:
-                        c.close()
-                        clients.remove(c)
-                        logger.error('Клиент отключился')
-        except BaseException as e:
-            logger.error(e)
+def send_to_all(msgs, clients):
+    try:
+        group_messages= msgs['all']
+        for msg in group_messages:
+            for c in clients:
+                try:
+                    c.send(msg.encode('utf-8'))
+                    logger.debug(f'{msg} is sent')
+                except:
+                    c.close()
+                    clients.remove(c)
+                    logger.error('Клиент отключился')
+        msgs.pop('all')
+    except BaseException as e:
+        logger.error(e)
 
+def send_to_user(names, msgs, clients):
+    for key in msgs:
+        if key in names:
+            msg=msgs[key]
+            client=names[key]
+            for m in msg:
+                client.send(m.encode('utf-8'))
+                logger.debug(f'{msg} is sent')
+        else:
+            logger.error('Такого пользователя в чате нет')
 
-def recieve(r, clients):
-    msgs=[]
+def recieve(r,names, clients):
+    msgs= {}
     for client in r:
         try:
-            data = client.recv(100000).decode('utf-8')
+            data = client.recv(100000)
             try:
+                data=data.decode('utf-8')
                 data= data.replace('}{', '};{')
                 msgs_in_data=data.split(';')
                 for msg in msgs_in_data:
                     json_data = json.loads(msg)
                     if json_data['action'] == 'presence':
                         logger.debug('got presence')
-                        return json.dumps({'response': 200, 'alert': 'ok'})
+                        names[json_data['user']['name']]=client
+                        msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
+
                     elif json_data['action'] == 'msg':
                         logger.debug('got message')
-                        msgs.append(json_data['text'] + ' from ' + json_data['user']['name'])
-                return msgs
+                        try:
+                            msgs[json_data['to_user']].append(json_data['text'] + ' from ' + json_data['user']['name'])
+                        except:
+                            msgs[json_data['to_user']] = [json_data['text'] + ' from ' + json_data['user']['name']]
+                return msgs, names
             except:
                 json_data = json.loads(data)
                 if json_data['action'] == 'presence':
                     logger.debug('got presence')
-                    return json.dumps({'response': 200, 'alert': 'ok'})
+                    names[json_data['user']['name']] = client
+                    msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
+
                 elif json_data['action'] == 'msg':
                     logger.debug('got message')
-                    msgs.append(json_data['text']+' from '+json_data['user']['name'])
-                    return msgs
+                    try:
+                        msgs[json_data['to_user']].append(json_data['text'] + ' from ' + json_data['user']['name'])
+                    except:
+                        msgs[json_data['to_user']]=[(json_data['text'] + ' from ' + json_data['user']['name'])]
+                return msgs, names
+
         except BaseException as e:
             logger.error(e)
             clients.remove(client)
-            return json.dumps({'response': 400, 'alert': 'error'})
+            return msgs, names
 
 def get_socket(port):
     s=socket(AF_INET, SOCK_STREAM)
@@ -81,26 +101,32 @@ def get_socket(port):
 if __name__=='__main__':
     s= get_socket(port)
     clients=[]
-    while True:
+    names={}
+    while 1:
         try:
             client, addr = s.accept()
 
             logger.debug(f'Запрос получен от {str(addr)}')
 
+            clients.append(client)
+            r = []
+            w = []
             try:
-                clients.append(client)
-                r=[]
-                w=[]
-                r, w, e = select.select(clients, clients, [], 10)
+                if clients:
+                    r, w, e = select.select(clients, clients, [], 10)
+                    r=clients
             except:
                 pass
-
-            msgs = recieve(r, clients)
-            send(msgs, w, clients)
-
-            msgs = recieve(r, clients)
-            send(msgs, w, clients)
-
+            while 1:
+                try:
+                    if r:
+                        msgs, names = recieve(r,names, clients)
+                    if 'all' in msgs:
+                        send_to_all(msgs, clients)
+                    if msgs:
+                        send_to_user(names, msgs, clients)
+                except:
+                    break
         except OSError as e:
             logger.error(e)
 

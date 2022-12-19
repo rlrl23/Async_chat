@@ -9,7 +9,7 @@ try:
     file_handler=logging.FileHandler(file_name, encoding='utf-8')
 except:
     file_name = 'client.log'
-    file_handler = logging.FileHandler(file_name, encoding='utf-8')
+    file_handler = logging.FileHandler(file_name, encoding='utf-8', )
 
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(formatter)
