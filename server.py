@@ -22,11 +22,11 @@ def log(func):
     return call
 
 @log
-def send_to_all(msgs, clients):
+def send_to_all(msgs, w):
     try:
         group_messages= msgs['all']
         for msg in group_messages:
-            for c in clients:
+            for c in w:
                 try:
                     c.send(msg.encode('utf-8'))
                     logger.debug(f'{msg} is sent')
@@ -114,7 +114,7 @@ if __name__=='__main__':
             try:
                 if clients:
                     r, w, e = select.select(clients, clients, [], 10)
-                    r=clients
+                    #r=clients
             except:
                 pass
             while 1:
@@ -122,7 +122,7 @@ if __name__=='__main__':
                     if r:
                         msgs, names = recieve(r,names, clients)
                     if 'all' in msgs:
-                        send_to_all(msgs, clients)
+                        send_to_all(msgs, w)
                     if msgs:
                         send_to_user(names, msgs, clients)
                 except:
