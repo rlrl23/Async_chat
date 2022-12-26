@@ -5,78 +5,90 @@ import logging
 import log.client_log_config
 import threading
 logger=logging.getLogger('client')
+from Metaclasses import ClientVerify
 
-port=7777
+#port=7777
 host='localhost'
+from descriptor import Port
+class Client(metaclass=ClientVerify):
+    port = Port()
 
-def create_presence_msg(name):
-    return json.dumps({"action": "presence",
-            "time": time.ctime(),
-            "user":{"name": name,"status": "here"}})
+    def __init__(self, name, port_val, host_val):
+        self.port=port_val
+        self.host=host_val
+        self.name=name
+        s = socket(AF_INET, SOCK_STREAM)
+        s.connect((self.host, self.port))
+        self.s=s
 
-def create_msg(name,to_user, text):
-    return json.dumps({"action": "msg",
-                       "text":text,
-            "time": time.ctime(),
-            "user":{"name": name,"status": "here"},
-                      'to_user':to_user})
+    def create_presence_msg(self):
+        return json.dumps({"action": "presence",
+                "time": time.ctime(),
+                "user":{"name": self.name,"status": "here"}})
 
-def get_client_socket(port, host):
-    s=socket(AF_INET, SOCK_STREAM)
-    s.connect((host,port))
-    return s
+    def create_msg(self,to_user, text):
+        return json.dumps({"action": "msg",
+                           "text":text,
+                "time": time.ctime(),
+                "user":{"name": self.name,"status": "here"},
+                          'to_user':to_user})
 
-def send(msg, s):
-    try:
-        s.send(msg.encode('utf-8'))
-        logger.debug(f'The message {msg} is sent')
-    except AttributeError as e:
-        logger.error(e)
+    def get_client_socket(self,port, host):
+        s=socket(AF_INET, SOCK_STREAM)
+        s.connect((host,port))
+        return s
 
-def user_communication(s):
-    name=input('Please, enter your name')
-    while 1:
-        msg=input('Enter your message, or q for exit')
-        if msg=='q':
-            break
-        else:
-            send(create_msg(name, msg), s)
-
-def recieve(s):
-    while True:
+    def send(self, msg):
         try:
-            time.sleep(2)
-            data = s.recv(10000)
-            logger.debug(f'The message {data.decode("utf-8")} is recieved ')
-
-        except BaseException as e:
+            self.s.send(msg.encode('utf-8'))
+            logger.debug(f'The message {msg} is sent')
+        except AttributeError as e:
             logger.error(e)
-            logger.debug(f'recieve finished')
-            break
 
+    def user_communication(self):
+        name=input('Please, enter your name')
+        while 1:
+            msg=input('Enter your message, or q for exit')
+            if msg=='q':
+                break
+            else:
+                self.send(self.create_msg(name, msg), self.s)
 
-def message_bot_sender():
-    msg = create_presence_msg('Mary')
-    msg_2 = create_msg('Mary','all', "Anybody is here?")
-    msg_3 = create_msg('Mary','Mary', "It seems, there are nobody")
-    msg_5 = create_presence_msg('Kira')
-    msg_4 = create_msg('Mary','Kira', "Good bue")
-    msgs = [msg,  msg_3, msg_5, msg_4]
+    def recieve(self):
+        while True:
+            try:
+                time.sleep(2)
+                data = self.s.recv(10000)
+                logger.debug(f'The message {data.decode("utf-8")} is recieved ')
 
-    for msg in msgs:
-        send(msg, s)
-        time.sleep(5)
+            except BaseException as e:
+                logger.error(e)
+                logger.debug(f'recieve finished')
+                break
+
+    def message_bot_sender(self):
+        msg = self.create_presence_msg()
+        msg_2 = self.create_msg('all', "Anybody is here?")
+        msg_3 = self.create_msg('Mary', "It seems, there are nobody")
+        msg_5 = self.create_presence_msg()
+        msg_4 = self.create_msg('Kira', "Good bue")
+        msgs = [msg,  msg_3, msg_5, msg_4]
+
+        for msg in msgs:
+            self.send(msg)
+            time.sleep(5)
 
 if __name__=='__main__':
     try:
-        s= get_client_socket(port, host)
+
+        Mary=Client('Mary',3537, host)
 
         #message_bot_sender()
-        thr_send= threading.Thread(target=message_bot_sender,args=(), daemon=1)
+        thr_send= threading.Thread(target=Mary.message_bot_sender,args=(), daemon=1)
         thr_send.start()
         # recieve(s)
 
-        thr_recieve= threading.Thread(target=recieve, args=(s,), daemon=1)
+        thr_recieve= threading.Thread(target=Mary.recieve, args=(), daemon=1)
         thr_recieve.start()
 
         while True:
