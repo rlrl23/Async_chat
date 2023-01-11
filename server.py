@@ -9,6 +9,11 @@ import select
 from Metaclasses import ServerVerify
 from descriptor import Port
 logger=logging.getLogger('server')
+from sqlalchemy import create_engine, update
+from Database_creation import Client_history, Client_table, Client_list
+from sqlalchemy.orm import sessionmaker, query
+
+
 
 port=7777
 host='localhost'
@@ -51,7 +56,7 @@ class Server(metaclass=ServerVerify):
             else:
                 logger.error('Такого пользователя в чате нет')
 
-    def recieve(r,names, clients):
+    def recieve(self, r, names, clients, client_host_port):
         msgs= {}
         for client in r:
             try:
@@ -65,6 +70,9 @@ class Server(metaclass=ServerVerify):
                         if json_data['action'] == 'presence':
                             logger.debug('got presence')
                             names[json_data['user']['name']]=client
+
+                            self.client_login(Server, json_data['user']['name'], ip=str(client_host_port[client]))
+
                             msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
 
                         elif json_data['action'] == 'msg':
@@ -79,6 +87,9 @@ class Server(metaclass=ServerVerify):
                     if json_data['action'] == 'presence':
                         logger.debug('got presence')
                         names[json_data['user']['name']] = client
+
+                        self.client_login(Server, json_data['user']['name'], ip=str(client_host_port[client]))
+
                         msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
 
                     elif json_data['action'] == 'msg':
@@ -90,6 +101,9 @@ class Server(metaclass=ServerVerify):
                     return msgs, names
 
             except BaseException as e:
+                for key, val in names.items():
+                    if val==client:
+                        self.client_logout(Server, key)
                 logger.error(e)
                 clients.remove(client)
                 return msgs, names
@@ -100,17 +114,52 @@ class Server(metaclass=ServerVerify):
         s.listen(5)
         return s
 
+    def client_logout(self, name):
+        engine = create_engine('sqlite:///server_base.db3', echo=True)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        try:
+            client = session.query(Client_table).filter_by(name=name).first()
+            client.is_active=False
+            print('Session. Changes:', session.dirty)
+            session.commit()
+
+            # stmt = (update(Client_table).where(Client_table.name==name).values(is_active=False))
+            # session.execute(stmt, execution_options={"synchronize_session": False})
+
+        except:
+            session.rollback()
+
+    def client_login(self, name, ip):
+        engine = create_engine('sqlite:///server_base.db3', echo=True)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        try:
+            client= session.query(Client_table).filter_by(name=name).first()
+            if client is None:
+                client = Client_table(name, ip)
+                session.add(client)
+            client_history = Client_history(client.ip)
+
+            session.add(client_history)
+
+            print('Session. New objects:', session.new)
+            session.commit()
+
+        except:
+            return logger.error('Basedata error')
+
 if __name__=='__main__':
 
     s= Server.get_socket(port)
     clients=[]
+    client_host_port={}
     names={}
     while 1:
         try:
             client, addr = s.accept()
-
             logger.debug(f'Запрос получен от {str(addr)}')
-
+            client_host_port[client]=addr
             clients.append(client)
             r = []
             w = []
@@ -123,7 +172,7 @@ if __name__=='__main__':
             while 1:
                 try:
                     if r:
-                        msgs, names = Server.recieve(r,names, clients)
+                        msgs, names = Server.recieve(Server, r, names, clients, client_host_port)
                     if 'all' in msgs:
                         Server.send_to_all(msgs, w)
                     if msgs:
