@@ -9,7 +9,7 @@ import select
 from Metaclasses import ServerVerify
 from descriptor import Port
 logger=logging.getLogger('server')
-from sqlalchemy import create_engine, update
+from sqlalchemy import create_engine, and_
 from Database_creation import Client_history, Client_table, Client_list
 from sqlalchemy.orm import sessionmaker, query
 
@@ -32,31 +32,48 @@ class Server(metaclass=ServerVerify):
     def send_to_all(msgs, w):
         try:
             group_messages= msgs['all']
-            for msg in group_messages:
+            if type(group_messages)==list:
+                for msg in group_messages:
+                    for c in w:
+                        try:
+                            c.send(msg.encode('utf-8'))
+                            logger.debug(f'{msg} is sent')
+                        except:
+                            c.close()
+                            clients.remove(c)
+                            logger.error('Клиент отключился')
+                msgs.pop('all')
+            else:
                 for c in w:
                     try:
-                        c.send(msg.encode('utf-8'))
-                        logger.debug(f'{msg} is sent')
+                        c.send(group_messages.encode('utf-8'))
+                        logger.debug(f'{group_messages} is sent')
                     except:
                         c.close()
                         clients.remove(c)
                         logger.error('Клиент отключился')
-            msgs.pop('all')
         except BaseException as e:
             logger.error(e)
 
-    def send_to_user(names, msgs, clients):
-        for key in msgs:
-            if key in names:
-                msg=msgs[key]
-                client=names[key]
-                for m in msg:
-                    client.send(m.encode('utf-8'))
-                    logger.debug(f'{msg} is sent')
-            else:
-                logger.error('Такого пользователя в чате нет')
+    def send_to_user(names, msgs):
+        try:
+            for key in msgs:
+                if key in names:
+                    msg=msgs[key]
+                    client=names[key]
+                    if type(msg)==list:
+                        for m in msg:
+                            client.send(m.encode('utf-8'))
+                            logger.debug(f'{m} is sent')
+                    else:
+                        client.send(msg.encode('utf-8'))
+                        logger.debug(f'{msg} is sent')
 
-    def recieve(self, r, names, clients, client_host_port):
+                else:
+                    logger.error('Такого пользователя в чате нет')
+        except BaseException as e:
+            logger.error(e)
+    def recieve(self, r, names, clients, client_host_port, session):
         msgs= {}
         for client in r:
             try:
@@ -71,16 +88,31 @@ class Server(metaclass=ServerVerify):
                             logger.debug('got presence')
                             names[json_data['user']['name']]=client
 
-                            self.client_login(Server, json_data['user']['name'], ip=str(client_host_port[client]))
+                            self.client_login(Server,session, json_data['user']['name'], ip=str(client_host_port[client]))
 
                             msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
 
                         elif json_data['action'] == 'msg':
                             logger.debug('got message')
                             try:
-                                msgs[json_data['to_user']].append(json_data['text'] + ' from ' + json_data['user']['name'])
+                                msgs[json_data['to_user']].append(json.dumps(json_data))
                             except:
-                                msgs[json_data['to_user']] = [json_data['text'] + ' from ' + json_data['user']['name']]
+                                msgs[json_data['to_user']] = json.dumps(json_data)
+
+                        elif json_data['action'] == 'get_contacts' and json_data['user_login'] in names:
+                            logger.debug('got get contacts')
+                            contact_list=self.client_contact_list(Server, session, json_data['user_login'])
+                            answer= json.dumps({'response': 202, 'alert': contact_list})
+                            msgs[json_data['user_login']]=answer
+
+                        elif json_data['action'] == 'add_contact':
+                            logger.debug('got add contact')
+                            msgs[json_data['user_login']]=self.add_contact(Server, session, json_data['user_id'], json_data['user_login'])
+
+                        elif json_data['action'] == 'del_contact':
+                            logger.debug('got del contact')
+                            msgs[json_data['user_login']]=self.del_contact(Server, session, json_data['user_id'], json_data['user_login'])
+
                     return msgs, names
                 except:
                     json_data = json.loads(data)
@@ -88,22 +120,29 @@ class Server(metaclass=ServerVerify):
                         logger.debug('got presence')
                         names[json_data['user']['name']] = client
 
-                        self.client_login(Server, json_data['user']['name'], ip=str(client_host_port[client]))
+                        self.client_login(Server,session, json_data['user']['name'], ip=str(client_host_port[client]))
 
                         msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
 
                     elif json_data['action'] == 'msg':
                         logger.debug('got message')
                         try:
-                            msgs[json_data['to_user']].append(json_data['text'] + ' from ' + json_data['user']['name'])
+                            msgs[json_data['to_user']].append(json.dumps(json_data))
                         except:
-                            msgs[json_data['to_user']]=[(json_data['text'] + ' from ' + json_data['user']['name'])]
+                            msgs[json_data['to_user']]=json.dumps(json_data)
+
+                    elif json_data['action'] == 'get_contacts':
+                        logger.debug('got get contacts')
+
+                        msgs[json_data['user_login']] = [
+                        json.dumps({'response': 202, 'alert': self.client_contact_list(Server, session, json_data['user_login'])})]
+
                     return msgs, names
 
             except BaseException as e:
                 for key, val in names.items():
                     if val==client:
-                        self.client_logout(Server, key)
+                        self.client_logout(Server, session, key)
                 logger.error(e)
                 clients.remove(client)
                 return msgs, names
@@ -114,10 +153,59 @@ class Server(metaclass=ServerVerify):
         s.listen(5)
         return s
 
-    def client_logout(self, name):
-        engine = create_engine('sqlite:///server_base.db3', echo=True)
-        Session = sessionmaker(bind=engine)
-        session = Session()
+    def del_contact(self, session, nickname, name):
+
+        contact = session.query(Client_table).filter_by(name=nickname).first()
+        if contact is None:
+            answer = json.dumps({'response': 400, 'alert': f'{nickname} not in contacts'})
+            return answer
+
+        host = session.query(Client_table).filter_by(name=name).first()
+        try:
+            del_contact=session.query(Client_list).filter_by(contact_id=contact.id).first()
+            session.delete(del_contact)
+            session.commit()
+            answer = json.dumps({'response': 200, 'alert': f'{nickname} deleted from contacts'})
+        except:
+            answer = json.dumps({'response': 400, 'alert': f'{nickname} not in your contacts'})
+
+        return answer
+
+    def add_contact(self, session, nickname, name):
+
+        new_contact = session.query(Client_table).filter_by(name=nickname).first()
+        if new_contact is None:
+            new_contact = Client_table(name=nickname, is_active=False)
+            session.add(new_contact)
+            session.commit()
+        else:
+            checking= session.query(Client_list).filter_by(contact_id=new_contact.id).first()
+            if checking is None:
+                host= session.query(Client_table).filter_by(name=name).first()
+                contact_for_list=Client_list(host.id, new_contact.id)
+                session.add(contact_for_list)
+                session.commit()
+                answer=json.dumps({'response': 200, 'alert': f'{nickname} add into contacts'})
+            else:
+                answer=json.dumps({'response': 400, 'alert': 'Already in contacts'})
+
+        return answer
+
+    def client_contact_list(self, session, name):
+        try:
+            host = session.query(Client_table).filter_by(name=name).first()
+            client_list=session.query(Client_list).filter_by(host_id=host.id).all()
+            result = []
+            for client in client_list:
+                contact=session.query(Client_table).filter_by(id=client.contact_id).first()
+                if contact is None:
+                    break
+                result.append(contact.name)
+            return result
+        except:
+            logger.error('DataBase error')
+
+    def client_logout(self, session, name):
         try:
             client = session.query(Client_table).filter_by(name=name).first()
             client.is_active=False
@@ -130,17 +218,18 @@ class Server(metaclass=ServerVerify):
         except:
             session.rollback()
 
-    def client_login(self, name, ip):
-        engine = create_engine('sqlite:///server_base.db3', echo=True)
-        Session = sessionmaker(bind=engine)
-        session = Session()
+    def client_login(self, session, name, ip):
+
         try:
             client= session.query(Client_table).filter_by(name=name).first()
             if client is None:
-                client = Client_table(name, ip)
+                client = Client_table(name)
                 session.add(client)
-            client_history = Client_history(client.ip)
 
+            client.is_active=True
+            client_history = Client_history(ip, client.name)
+
+            session.add(client)
             session.add(client_history)
 
             print('Session. New objects:', session.new)
@@ -155,6 +244,11 @@ if __name__=='__main__':
     clients=[]
     client_host_port={}
     names={}
+
+    engine = create_engine('sqlite:///server_base.db3', echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
     while 1:
         try:
             client, addr = s.accept()
@@ -172,11 +266,11 @@ if __name__=='__main__':
             while 1:
                 try:
                     if r:
-                        msgs, names = Server.recieve(Server, r, names, clients, client_host_port)
+                        msgs, names = Server.recieve(Server, r, names, clients, client_host_port, session)
                     if 'all' in msgs:
                         Server.send_to_all(msgs, w)
                     if msgs:
-                        Server.send_to_user(names, msgs, clients)
+                        Server.send_to_user(names, msgs)
                 except:
                     break
         except OSError as e:

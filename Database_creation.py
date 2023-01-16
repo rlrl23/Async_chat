@@ -17,7 +17,7 @@ metadata = MetaData()
 client_table = Table('Client', metadata,
                      Column('id', Integer, primary_key=True),
                      Column('name', String),
-                     Column('ip', String),
+                    Column('is_active', Boolean),
 
 
 )
@@ -25,31 +25,36 @@ client_table = Table('Client', metadata,
 client_history=Table('Client_history', metadata,
                      Column('id', Integer, primary_key=True),
                      Column('come_in', DATETIME),
-                     Column('ip', ForeignKey('Client.ip')),
+                     Column('ip', String),
+                        Column('name', ForeignKey('Client.name')),
                      )
 
 client_list=Table('Client_list', metadata,
                   Column('id', Integer, primary_key=True),
-                  Column('client_id', ForeignKey('Client.id')))
+                  Column('host_id', ForeignKey('Client.id')),
+                    Column('contact_id', ForeignKey('Client.id'))
+
+                  )
 
 metadata.create_all(engine)
 
 
 class Client_table:
-    def __init__(self, name, ip, is_active=True):
+    def __init__(self, name, is_active=True):
         self.name = name
-        self.ip = ip
         self.is_active=is_active
 
 
 class Client_history:
-    def __init__(self, ip):
+    def __init__(self, ip, name):
         self.ip = ip
         self.come_in = datetime.now()
+        self.name = name
 
 class Client_list:
-    def __init__(self, client_id):
-        self.client_id = client_id
+    def __init__(self, host_id, client_id):
+        self.host_id=host_id
+        self.contact_id = client_id
 
 mapper(Client_table, client_table)
 mapper(Client_history, client_history)
