@@ -13,6 +13,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from Database_creation import Client_table, Client_history
 from sqlalchemy.orm import sessionmaker, query
 from sqlalchemy import create_engine
+from server import Server
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -34,6 +35,11 @@ class Ui_MainWindow(object):
         self.btn_server = QtWidgets.QPushButton(self.centralwidget)
         self.btn_server.setGeometry(QtCore.QRect(570, 320, 101, 23))
         self.btn_server.setObjectName("server_settings")
+        self.btn_server.clicked.connect(self.server_settings)
+
+        self.answer=QtWidgets.QLabel(self.centralwidget)
+        self.answer.setGeometry(QtCore.QRect(570, 380, 101, 23))
+
 
         self.Database = QtWidgets.QLabel(self.centralwidget)
         self.Database.setGeometry(QtCore.QRect(30, 60, 401, 481))
@@ -59,17 +65,17 @@ class Ui_MainWindow(object):
         self.label_4.setGeometry(QtCore.QRect(460, 260, 141, 21))
         self.label_4.setObjectName("label_4")
 
-        self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_3.setGeometry(QtCore.QRect(620, 260, 161, 31))
-        self.lineEdit_3.setObjectName("database_name")
+        self.database_name = QtWidgets.QLineEdit(self.centralwidget)
+        self.database_name.setGeometry(QtCore.QRect(620, 260, 161, 31))
+        self.database_name.setObjectName("database_name")
 
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(620, 140, 161, 31))
-        self.lineEdit.setObjectName("port")
+        self.port = QtWidgets.QLineEdit(self.centralwidget)
+        self.port.setGeometry(QtCore.QRect(620, 140, 161, 31))
+        self.port.setObjectName("port")
 
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_2.setGeometry(QtCore.QRect(620, 200, 161, 31))
-        self.lineEdit_2.setObjectName("ip")
+        self.ip = QtWidgets.QLineEdit(self.centralwidget)
+        self.ip.setGeometry(QtCore.QRect(620, 200, 161, 31))
+        self.ip.setObjectName("ip")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -94,8 +100,8 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Port"))
         self.label_3.setText(_translate("MainWindow", "IP"))
         self.label_4.setText(_translate("MainWindow", "Database name"))
-        self.lineEdit.setText(_translate("MainWindow", "7777"))
-        self.lineEdit_3.setText(_translate("MainWindow", "server_base.db3"))
+        self.port.setText(_translate("MainWindow", "7777"))
+        self.database_name.setText(_translate("MainWindow", "server_base.db3"))
 
     def client_list(self):
         engine = create_engine('sqlite:///server_base.db3', echo=True)
@@ -117,6 +123,17 @@ class Ui_MainWindow(object):
                 self.Database.text() + '\n' + str(client.id) + '    ' + client.ip + '        ' + str(
                     client.come_in)+ '        ' +client.name)
 
+    def server_settings(self):
+        port=self.port.text()
+        ip=self.ip.text()
+        database='sqlite:///'+self.path.text()+'/'+self.database_name.text()
+        try:
+            s = Server(int(port), ip, database)
+            socket=s.get_socket()
+            self.answer.setText('Settings are correct!')
+            socket.close()
+        except:
+            self.answer.setText('Error settings!')
 
 if __name__ == "__main__":
     import sys
