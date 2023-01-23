@@ -15,3 +15,670 @@
 2023-01-16 22:46:12,512 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Mon Jan 16 22:45:47 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
 2023-01-16 22:46:12,730 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Mon Jan 16 22:45:47 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
 2023-01-16 22:46:27,498 - DEBUG    - client_2 - client finished
+2023-01-17 08:58:11,192 - ERROR    - client_2 - [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение
+2023-01-17 08:59:25,958 - DEBUG    - client_2 - The message {"action": "presence", "time": "Tue Jan 17 08:59:25 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-17 08:59:30,960 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Tue Jan 17 08:59:25 2023", "user_login": "Mary"} is sent
+2023-01-17 08:59:30,986 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob'] 
+2023-01-17 08:59:35,989 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Tue Jan 17 08:59:25 2023", "user_login": "Mary"} is sent
+2023-01-17 08:59:36,008 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-17 08:59:41,009 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Tue Jan 17 08:59:25 2023", "user_login": "Mary"} is sent
+2023-01-17 08:59:41,019 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-17 08:59:46,020 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Tue Jan 17 08:59:25 2023", "user_login": "Mary"} is sent
+2023-01-17 08:59:46,034 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob'] 
+2023-01-17 08:59:51,035 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Tue Jan 17 08:59:25 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-17 09:00:05,961 - DEBUG    - client_2 - client finished
+2023-01-17 09:01:42,281 - DEBUG    - client_2 - The message {"action": "presence", "time": "Tue Jan 17 09:01:42 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-17 09:01:47,282 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Tue Jan 17 09:01:42 2023", "user_login": "Mary"} is sent
+2023-01-17 09:01:47,301 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob'] 
+2023-01-17 09:01:52,303 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Tue Jan 17 09:01:42 2023", "user_login": "Mary"} is sent
+2023-01-17 09:01:52,311 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-17 09:01:57,312 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Tue Jan 17 09:01:42 2023", "user_login": "Mary"} is sent
+2023-01-17 09:01:57,338 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-17 09:02:02,344 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Tue Jan 17 09:01:42 2023", "user_login": "Mary"} is sent
+2023-01-17 09:02:02,353 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob'] 
+2023-01-17 09:02:07,354 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Tue Jan 17 09:01:42 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-17 09:02:22,283 - DEBUG    - client_2 - client finished
+2023-01-17 09:03:01,800 - DEBUG    - client_2 - The message {"action": "presence", "time": "Tue Jan 17 09:03:01 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-17 09:03:03,802 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-17 09:03:06,801 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Tue Jan 17 09:03:01 2023", "user_login": "Mary"} is sent
+2023-01-17 09:03:06,821 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas"]} is recieved 
+2023-01-17 09:03:06,836 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob'] 
+2023-01-17 09:03:11,838 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Tue Jan 17 09:03:01 2023", "user_login": "Mary"} is sent
+2023-01-17 09:03:11,843 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-17 09:03:11,847 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-17 09:03:16,848 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Tue Jan 17 09:03:01 2023", "user_login": "Mary"} is sent
+2023-01-17 09:03:16,854 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-17 09:03:16,861 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-17 09:03:21,862 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Tue Jan 17 09:03:01 2023", "user_login": "Mary"} is sent
+2023-01-17 09:03:21,869 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas"]} is recieved 
+2023-01-17 09:03:21,873 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob'] 
+2023-01-17 09:03:26,874 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Tue Jan 17 09:03:01 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-17 09:03:27,056 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Tue Jan 17 09:03:01 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-17 09:03:41,802 - DEBUG    - client_2 - client finished
+2023-01-18 11:24:06,569 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Mia", "time": "Wed Jan 18 11:24:06 2023", "user_login": "Mary"} is sent
+2023-01-18 11:30:05,428 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Helen", "time": "Wed Jan 18 11:30:05 2023", "user_login": "Mary"} is sent
+2023-01-18 11:32:01,106 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bill", "time": "Wed Jan 18 11:32:01 2023", "user_login": "Mary"} is sent
+2023-01-18 11:36:53,850 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 11:36:53 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-18 11:37:16,280 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 11:37:16 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 12:03:03,820 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:03:03 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 12:13:31,582 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:13:31 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 12:13:45,685 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:13:45 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 12:14:13,410 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:14:13 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-18 12:17:30,939 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Mary", "time": "Wed Jan 18 12:17:30 2023", "user_login": "Mary"} is sent
+2023-01-18 12:17:40,347 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:17:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-18 12:18:55,034 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "all", "time": "Wed Jan 18 12:18:55 2023", "user_login": "Mary"} is sent
+2023-01-18 12:19:10,571 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:19:10 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 12:19:10,800 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 12:19:10 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 13:46:12,979 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 13:46:12 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 13:46:13,194 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 13:46:12 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 13:53:06,730 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Wed Jan 18 13:53:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 13:53:06,925 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Wed Jan 18 13:53:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 13:55:15,148 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Wed Jan 18 13:55:15 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 13:56:02,891 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Wed Jan 18 13:55:15 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 13:56:34,417 - DEBUG    - client_2 - The message {"action": "msg", "text": "how are you?", "time": "Wed Jan 18 13:56:34 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 13:56:34,601 - DEBUG    - client_2 - The message {"action": "msg", "text": "how are you?", "time": "Wed Jan 18 13:56:34 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 13:57:04,953 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Wed Jan 18 13:57:04 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 13:57:04,956 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Wed Jan 18 13:57:04 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 13:57:04,996 - ERROR    - client_2 - (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 11608 and this is thread id 4564.
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2023-01-18 13:57:04,996 - DEBUG    - client_2 - recieve finished
+2023-01-18 14:06:59,558 - DEBUG    - client_2 - The message {"action": "msg", "text": "forest ", "time": "Wed Jan 18 14:06:59 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:06:59,843 - DEBUG    - client_2 - The message {"action": "msg", "text": "forest ", "time": "Wed Jan 18 14:06:59 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 14:07:19,158 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Wed Jan 18 14:07:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:07:21,281 - DEBUG    - client_2 - The message {"action": "msg", "text": "", "time": "Wed Jan 18 14:07:21 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:07:41,835 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Wed Jan 18 14:07:41 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-18 14:07:50,406 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Wed Jan 18 14:07:50 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-18 14:22:07,434 - DEBUG    - client_2 - The message {"action": "msg", "text": "to you", "time": "Wed Jan 18 14:22:07 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:31:46,143 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Wed Jan 18 14:31:46 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:31:59,080 - DEBUG    - client_2 - The message {"action": "msg", "text": "auuu", "time": "Wed Jan 18 14:31:59 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:33:33,539 - DEBUG    - client_2 - The message {"action": "msg", "text": "auuu", "time": "Wed Jan 18 14:33:33 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:34:40,121 - DEBUG    - client_2 - The message {"action": "msg", "text": "Thomas?", "time": "Wed Jan 18 14:34:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:39:25,587 - DEBUG    - client_2 - The message {"action": "msg", "text": "see you", "time": "Wed Jan 18 14:39:25 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:39:37,950 - DEBUG    - client_2 - The message {"action": "msg", "text": "what?", "time": "Wed Jan 18 14:39:37 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 14:39:52,822 - DEBUG    - client_2 - The message {"action": "msg", "text": "see you", "time": "Wed Jan 18 14:39:52 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:40:12,479 - DEBUG    - client_2 - The message {"action": "msg", "text": "freedom\n", "time": "Wed Jan 18 14:40:12 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:41:03,958 - DEBUG    - client_2 - The message {"action": "msg", "text": "what?", "time": "Wed Jan 18 14:41:03 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:41:04,137 - DEBUG    - client_2 - The message {"action": "msg", "text": "what?", "time": "Wed Jan 18 14:41:03 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 14:41:26,726 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Wed Jan 18 14:41:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-18 14:41:58,101 - DEBUG    - client_2 - The message {"action": "msg", "text": "who", "time": "Wed Jan 18 14:41:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:41:58,104 - DEBUG    - client_2 - The message {"action": "msg", "text": "who", "time": "Wed Jan 18 14:41:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 14:42:05,557 - DEBUG    - client_2 - The message {"action": "msg", "text": "why", "time": "Wed Jan 18 14:42:05 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 14:42:05,559 - DEBUG    - client_2 - The message {"action": "msg", "text": "why", "time": "Wed Jan 18 14:42:05 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-18 14:42:42,550 - DEBUG    - client_2 - The message {"action": "msg", "text": "wow", "time": "Wed Jan 18 14:42:42 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 15:22:47,143 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Cris", "time": "Wed Jan 18 15:22:47 2023", "user_login": "Mary"} is sent
+2023-01-18 15:22:57,631 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Wed Jan 18 15:22:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Cris"} is sent
+2023-01-18 15:26:08,908 - DEBUG    - client_2 - The message {"action": "msg", "text": "how are you?", "time": "Wed Jan 18 15:26:08 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Cris"} is sent
+2023-01-18 15:26:26,148 - DEBUG    - client_2 - The message {"action": "msg", "text": "are you here?", "time": "Wed Jan 18 15:26:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-18 15:26:50,859 - DEBUG    - client_2 - The message {"action": "msg", "text": "what`s wrong?", "time": "Wed Jan 18 15:26:50 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-18 15:27:10,924 - DEBUG    - client_2 - The message {"action": "msg", "text": "auu", "time": "Wed Jan 18 15:27:10 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 10:54:28,320 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Thu Jan 19 10:54:28 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 10:56:21,486 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Thu Jan 19 10:56:21 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:00:20,469 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Thu Jan 19 11:00:20 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:00:58,484 - DEBUG    - client_2 - The message {"action": "msg", "text": "kra", "time": "Thu Jan 19 11:00:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:01:42,260 - DEBUG    - client_2 - The message {"action": "msg", "text": "kra", "time": "Thu Jan 19 11:01:42 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:07:03,017 - DEBUG    - client_2 - The message {"action": "msg", "text": "ku ka re ku", "time": "Thu Jan 19 11:07:03 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:07:30,724 - DEBUG    - client_2 - The message {"action": "msg", "text": "123", "time": "Thu Jan 19 11:07:30 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:14:40,886 - DEBUG    - client_2 - The message {"action": "msg", "text": "456", "time": "Thu Jan 19 11:14:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:16:02,510 - DEBUG    - client_2 - The message {"action": "msg", "text": "789", "time": "Thu Jan 19 11:16:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:16:41,839 - DEBUG    - client_2 - The message {"action": "msg", "text": "987", "time": "Thu Jan 19 11:16:41 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:18:00,012 - DEBUG    - client_2 - The message {"action": "msg", "text": "777", "time": "Thu Jan 19 11:18:00 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:24:04,743 - DEBUG    - client_2 - The message {"action": "msg", "text": "777", "time": "Thu Jan 19 11:24:04 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:25:16,395 - DEBUG    - client_2 - The message {"action": "msg", "text": "777\n", "time": "Thu Jan 19 11:25:16 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:27:53,873 - DEBUG    - client_2 - The message {"action": "msg", "text": "555", "time": "Thu Jan 19 11:27:53 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:33:14,847 - DEBUG    - client_2 - The message {"action": "msg", "text": "777", "time": "Thu Jan 19 11:33:14 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:34:49,543 - DEBUG    - client_2 - The message {"action": "msg", "text": "123", "time": "Thu Jan 19 11:34:49 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:36:21,926 - DEBUG    - client_2 - The message {"action": "msg", "text": "222", "time": "Thu Jan 19 11:36:21 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:37:40,861 - DEBUG    - client_2 - The message {"action": "msg", "text": "111", "time": "Thu Jan 19 11:37:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:38:09,607 - DEBUG    - client_2 - The message {"action": "msg", "text": "12", "time": "Thu Jan 19 11:38:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:39:05,368 - DEBUG    - client_2 - The message {"action": "msg", "text": "35", "time": "Thu Jan 19 11:39:05 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:43:00,198 - DEBUG    - client_2 - The message {"action": "msg", "text": "32", "time": "Thu Jan 19 11:43:00 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:44:58,659 - DEBUG    - client_2 - The message {"action": "msg", "text": "52", "time": "Thu Jan 19 11:44:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:45:48,186 - DEBUG    - client_2 - The message {"action": "msg", "text": "25", "time": "Thu Jan 19 11:45:48 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:46:33,167 - DEBUG    - client_2 - The message {"action": "msg", "text": "32", "time": "Thu Jan 19 11:46:33 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:56:43,438 - DEBUG    - client_2 - The message {"action": "msg", "text": "32", "time": "Thu Jan 19 11:56:43 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:57:58,935 - DEBUG    - client_2 - The message {"action": "msg", "text": "000", "time": "Thu Jan 19 11:57:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 11:59:44,133 - DEBUG    - client_2 - The message {"action": "msg", "text": "00", "time": "Thu Jan 19 11:59:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:01:09,589 - DEBUG    - client_2 - The message {"action": "msg", "text": "lol", "time": "Thu Jan 19 12:01:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:02:56,267 - DEBUG    - client_2 - The message {"action": "msg", "text": "lilo", "time": "Thu Jan 19 12:02:56 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:03:55,709 - DEBUG    - client_2 - The message {"action": "msg", "text": "23", "time": "Thu Jan 19 12:03:55 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:05:57,426 - DEBUG    - client_2 - The message {"action": "msg", "text": "10", "time": "Thu Jan 19 12:05:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:06:28,002 - DEBUG    - client_2 - The message {"action": "msg", "text": "12", "time": "Thu Jan 19 12:06:28 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:07:00,186 - DEBUG    - client_2 - The message {"action": "msg", "text": "15", "time": "Thu Jan 19 12:07:00 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 12:08:13,938 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Thu Jan 19 12:08:13 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:11:01,344 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Thu Jan 19 14:11:01 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 14:11:10,015 - DEBUG    - client_2 - The message {"action": "msg", "text": "auuu", "time": "Thu Jan 19 14:11:10 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 14:11:23,390 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Thu Jan 19 14:11:23 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:15:11,841 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Thu Jan 19 14:15:11 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:16:27,703 - DEBUG    - client_2 - The message {"action": "msg", "text": "01", "time": "Thu Jan 19 14:16:27 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:17:38,357 - DEBUG    - client_2 - The message {"action": "msg", "text": "02", "time": "Thu Jan 19 14:17:38 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:19:09,189 - DEBUG    - client_2 - The message {"action": "msg", "text": "03", "time": "Thu Jan 19 14:19:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:21:05,238 - DEBUG    - client_2 - The message {"action": "msg", "text": "kra", "time": "Thu Jan 19 14:21:05 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:23:36,964 - DEBUG    - client_2 - The message {"action": "msg", "text": "12", "time": "Thu Jan 19 14:23:36 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:24:08,708 - DEBUG    - client_2 - The message {"action": "msg", "text": "12", "time": "Thu Jan 19 14:24:08 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:24:41,490 - DEBUG    - client_2 - The message {"action": "msg", "text": "13", "time": "Thu Jan 19 14:24:41 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:25:19,819 - DEBUG    - client_2 - The message {"action": "msg", "text": "14", "time": "Thu Jan 19 14:25:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:26:00,285 - DEBUG    - client_2 - The message {"action": "msg", "text": "15", "time": "Thu Jan 19 14:26:00 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:26:31,267 - DEBUG    - client_2 - The message {"action": "msg", "text": "16", "time": "Thu Jan 19 14:26:31 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:26:37,107 - DEBUG    - client_2 - The message {"action": "msg", "text": "17", "time": "Thu Jan 19 14:26:37 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:26:56,161 - DEBUG    - client_2 - The message {"action": "msg", "text": "23", "time": "Thu Jan 19 14:26:56 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 14:28:18,794 - DEBUG    - client_2 - The message {"action": "msg", "text": "18", "time": "Thu Jan 19 14:28:18 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:29:15,850 - DEBUG    - client_2 - The message {"action": "msg", "text": "19", "time": "Thu Jan 19 14:29:15 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:29:44,360 - DEBUG    - client_2 - The message {"action": "msg", "text": "20", "time": "Thu Jan 19 14:29:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:29:52,944 - DEBUG    - client_2 - The message {"action": "msg", "text": "21", "time": "Thu Jan 19 14:29:52 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:30:24,785 - DEBUG    - client_2 - The message {"action": "msg", "text": "22", "time": "Thu Jan 19 14:30:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:31:38,625 - DEBUG    - client_2 - The message {"action": "msg", "text": "23", "time": "Thu Jan 19 14:31:38 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:33:06,665 - DEBUG    - client_2 - The message {"action": "msg", "text": "24", "time": "Thu Jan 19 14:33:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:36:11,326 - DEBUG    - client_2 - The message {"action": "msg", "text": "25", "time": "Thu Jan 19 14:36:11 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:36:58,329 - DEBUG    - client_2 - The message {"action": "msg", "text": "26", "time": "Thu Jan 19 14:36:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:39:58,633 - DEBUG    - client_2 - The message {"action": "msg", "text": "27", "time": "Thu Jan 19 14:39:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:41:16,174 - DEBUG    - client_2 - The message {"action": "msg", "text": "28", "time": "Thu Jan 19 14:41:16 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:44:11,181 - DEBUG    - client_2 - The message {"action": "msg", "text": "29", "time": "Thu Jan 19 14:44:11 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:46:52,741 - DEBUG    - client_2 - The message {"action": "msg", "text": "30", "time": "Thu Jan 19 14:46:52 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:47:50,971 - DEBUG    - client_2 - The message {"action": "msg", "text": "31", "time": "Thu Jan 19 14:47:50 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:51:09,485 - DEBUG    - client_2 - The message {"action": "msg", "text": "32", "time": "Thu Jan 19 14:51:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:51:40,776 - DEBUG    - client_2 - The message {"action": "msg", "text": "33", "time": "Thu Jan 19 14:51:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:54:06,047 - DEBUG    - client_2 - The message {"action": "msg", "text": "34", "time": "Thu Jan 19 14:54:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:56:13,517 - DEBUG    - client_2 - The message {"action": "msg", "text": "35", "time": "Thu Jan 19 14:56:13 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 14:58:27,148 - DEBUG    - client_2 - The message {"action": "msg", "text": "36", "time": "Thu Jan 19 14:58:27 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:00:31,534 - DEBUG    - client_2 - The message {"action": "msg", "text": "37", "time": "Thu Jan 19 15:00:31 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:00:40,604 - DEBUG    - client_2 - The message {"action": "msg", "text": "38", "time": "Thu Jan 19 15:00:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:02:29,452 - DEBUG    - client_2 - The message {"action": "msg", "text": "39", "time": "Thu Jan 19 15:02:29 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:03:06,435 - DEBUG    - client_2 - The message {"action": "msg", "text": "40", "time": "Thu Jan 19 15:03:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:04:12,050 - DEBUG    - client_2 - The message {"action": "msg", "text": "41", "time": "Thu Jan 19 15:04:12 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:05:18,266 - DEBUG    - client_2 - The message {"action": "msg", "text": "42", "time": "Thu Jan 19 15:05:18 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:10:25,425 - DEBUG    - client_2 - The message {"action": "msg", "text": "24", "time": "Thu Jan 19 15:10:25 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 15:10:33,297 - DEBUG    - client_2 - The message {"action": "msg", "text": "43", "time": "Thu Jan 19 15:10:33 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:12:11,648 - DEBUG    - client_2 - The message {"action": "msg", "text": "44", "time": "Thu Jan 19 15:12:11 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:13:13,847 - DEBUG    - client_2 - The message {"action": "msg", "text": "44", "time": "Thu Jan 19 15:13:13 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:13:42,402 - DEBUG    - client_2 - The message {"action": "msg", "text": "45", "time": "Thu Jan 19 15:13:42 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:23:02,926 - DEBUG    - client_2 - The message {"action": "msg", "text": "46", "time": "Thu Jan 19 15:23:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:23:44,323 - DEBUG    - client_2 - The message {"action": "msg", "text": "47", "time": "Thu Jan 19 15:23:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:23:56,171 - DEBUG    - client_2 - The message {"action": "msg", "text": "48", "time": "Thu Jan 19 15:23:56 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:24:36,050 - DEBUG    - client_2 - The message {"action": "msg", "text": "49", "time": "Thu Jan 19 15:24:36 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:25:19,858 - DEBUG    - client_2 - The message {"action": "msg", "text": "50", "time": "Thu Jan 19 15:25:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:25:27,443 - DEBUG    - client_2 - The message {"action": "msg", "text": "51", "time": "Thu Jan 19 15:25:27 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:26:02,090 - DEBUG    - client_2 - The message {"action": "msg", "text": "52", "time": "Thu Jan 19 15:26:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:27:27,842 - DEBUG    - client_2 - The message {"action": "msg", "text": "53", "time": "Thu Jan 19 15:27:27 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:28:26,985 - DEBUG    - client_2 - The message {"action": "msg", "text": "54", "time": "Thu Jan 19 15:28:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:29:37,970 - DEBUG    - client_2 - The message {"action": "msg", "text": "55", "time": "Thu Jan 19 15:29:37 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:30:35,035 - DEBUG    - client_2 - The message {"action": "msg", "text": "56", "time": "Thu Jan 19 15:30:35 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:31:07,992 - DEBUG    - client_2 - The message {"action": "msg", "text": "57", "time": "Thu Jan 19 15:31:07 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:31:16,344 - DEBUG    - client_2 - The message {"action": "msg", "text": "58", "time": "Thu Jan 19 15:31:16 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:31:34,295 - DEBUG    - client_2 - The message {"action": "msg", "text": "59", "time": "Thu Jan 19 15:31:34 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 15:32:53,945 - DEBUG    - client_2 - The message {"action": "msg", "text": "60", "time": "Thu Jan 19 15:32:53 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:21:06,016 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Thu Jan 19 19:21:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:23:14,486 - DEBUG    - client_2 - The message {"action": "msg", "text": "123", "time": "Thu Jan 19 19:23:14 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:28:25,090 - DEBUG    - client_2 - The message {"action": "msg", "text": "321", "time": "Thu Jan 19 19:28:25 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:29:03,689 - DEBUG    - client_2 - The message {"action": "msg", "text": "hey", "time": "Thu Jan 19 19:29:03 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "Mia"} is sent
+2023-01-19 19:33:57,514 - DEBUG    - client_2 - The message {"action": "msg", "text": "123", "time": "Thu Jan 19 19:33:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 19:34:12,575 - DEBUG    - client_2 - The message {"action": "msg", "text": "0", "time": "Thu Jan 19 19:34:12 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:36:29,703 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Thu Jan 19 19:36:29 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-19 19:36:39,256 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Thu Jan 19 19:36:39 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:36:45,312 - DEBUG    - client_2 - The message {"action": "msg", "text": "auu", "time": "Thu Jan 19 19:36:45 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:37:27,794 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi everybody!", "time": "Thu Jan 19 19:37:27 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:40:10,161 - DEBUG    - client_2 - The message {"action": "msg", "text": "1", "time": "Thu Jan 19 19:40:10 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:41:23,687 - DEBUG    - client_2 - The message {"action": "msg", "text": "2", "time": "Thu Jan 19 19:41:23 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:45:25,812 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Thu Jan 19 19:45:25 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 19:48:16,795 - DEBUG    - client_2 - The message {"action": "msg", "text": "3", "time": "Thu Jan 19 19:48:16 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:48:45,385 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Thu Jan 19 19:48:45 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:50:51,234 - DEBUG    - client_2 - The message {"action": "msg", "text": "1", "time": "Thu Jan 19 19:50:51 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:50:54,458 - DEBUG    - client_2 - The message {"action": "msg", "text": "2", "time": "Thu Jan 19 19:50:54 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:50:57,307 - DEBUG    - client_2 - The message {"action": "msg", "text": "3", "time": "Thu Jan 19 19:50:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-19 19:53:06,993 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Thu Jan 19 19:53:06 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 19:54:04,047 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Thu Jan 19 19:54:04 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 19:54:20,623 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Thu Jan 19 19:54:20 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 20:01:00,173 - DEBUG    - client_2 - The message {"action": "msg", "text": "6", "time": "Thu Jan 19 20:01:00 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 20:02:07,014 - DEBUG    - client_2 - The message {"action": "msg", "text": "7", "time": "Thu Jan 19 20:02:07 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 20:03:58,360 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 20:03:58 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 20:04:03,362 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 20:03:58 2023", "user_login": "Mary"} is sent
+2023-01-19 20:04:03,389 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Bill', 'Mary', 'all', 'Cris'] 
+2023-01-19 20:04:08,390 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Thu Jan 19 20:03:58 2023", "user_login": "Mary"} is sent
+2023-01-19 20:04:08,399 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-19 20:04:13,401 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Thu Jan 19 20:03:58 2023", "user_login": "Mary"} is sent
+2023-01-19 20:04:13,426 - DEBUG    - client_2 - Bill удален из списка контактов
+2023-01-19 20:04:18,427 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 20:03:58 2023", "user_login": "Mary"} is sent
+2023-01-19 20:04:18,443 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 20:04:23,444 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Thu Jan 19 20:03:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 20:04:38,361 - DEBUG    - client_2 - client finished
+2023-01-19 20:50:43,727 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 20:50:43 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 20:57:46,841 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 20:57:46 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 20:59:42,439 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 20:59:42 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:02:54,351 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:02:54 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:03:52,189 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:03:52 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:05:04,076 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:05:04 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:08:33,372 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:08:33 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:10:26,283 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:10:26 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:11:40,579 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:11:40 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:17:25,654 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:17:25 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:17:27,657 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-19 21:17:30,656 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 21:17:25 2023", "user_login": "Mary"} is sent
+2023-01-19 21:17:30,683 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-19 21:17:30,728 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 21:17:35,736 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Thu Jan 19 21:17:25 2023", "user_login": "Mary"} is sent
+2023-01-19 21:17:35,742 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-19 21:17:35,771 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-19 21:17:40,772 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Thu Jan 19 21:17:25 2023", "user_login": "Mary"} is sent
+2023-01-19 21:17:40,778 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-19 21:17:40,787 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-19 21:17:45,791 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 21:17:25 2023", "user_login": "Mary"} is sent
+2023-01-19 21:17:45,804 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-19 21:17:45,825 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 21:17:50,826 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Thu Jan 19 21:17:25 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 21:18:05,657 - DEBUG    - client_2 - client finished
+2023-01-19 21:21:03,314 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:21:03 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:21:08,316 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 21:21:03 2023", "user_login": "Mary"} is sent
+2023-01-19 21:21:08,361 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 21:21:13,364 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Thu Jan 19 21:21:03 2023", "user_login": "Mary"} is sent
+2023-01-19 21:21:13,385 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-19 21:21:18,386 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Thu Jan 19 21:21:03 2023", "user_login": "Mary"} is sent
+2023-01-19 21:21:18,421 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-19 21:21:23,422 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 21:21:03 2023", "user_login": "Mary"} is sent
+2023-01-19 21:21:23,459 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 21:21:28,460 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Thu Jan 19 21:21:03 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 21:21:39,928 - ERROR    - client_2 - [WinError 10054] Удаленный хост принудительно разорвал существующее подключение
+2023-01-19 21:21:39,928 - DEBUG    - client_2 - recieve finished
+2023-01-19 21:21:43,322 - DEBUG    - client_2 - client finished
+2023-01-19 21:22:39,885 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:22:39 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:22:44,887 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 21:22:39 2023", "user_login": "Mary"} is sent
+2023-01-19 21:22:44,932 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 21:22:49,933 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Thu Jan 19 21:22:39 2023", "user_login": "Mary"} is sent
+2023-01-19 21:22:49,953 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-19 21:22:54,954 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Thu Jan 19 21:22:39 2023", "user_login": "Mary"} is sent
+2023-01-19 21:22:54,974 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-19 21:22:59,976 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Thu Jan 19 21:22:39 2023", "user_login": "Mary"} is sent
+2023-01-19 21:22:59,997 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-19 21:23:04,998 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Thu Jan 19 21:22:39 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 21:23:19,271 - ERROR    - client_2 - [WinError 10054] Удаленный хост принудительно разорвал существующее подключение
+2023-01-19 21:23:19,272 - DEBUG    - client_2 - recieve finished
+2023-01-19 21:23:19,889 - DEBUG    - client_2 - client finished
+2023-01-19 21:26:30,320 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 21:26:30 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 21:26:35,988 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Thu Jan 19 21:26:35 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 22:20:39,352 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:20:39 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:23:03,023 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:23:03 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:23:14,365 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Thu Jan 19 22:23:14 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Helen"} is sent
+2023-01-19 22:25:09,929 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:25:09 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:25:18,139 - DEBUG    - client_2 - The message {"action": "msg", "text": "55", "time": "Thu Jan 19 22:25:18 2023", "user": {"name": "Thomas", "status": "here"}, "to_user": "Helen"} is sent
+2023-01-19 22:29:48,411 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:29:48 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:30:15,753 - DEBUG    - client_2 - The message {"action": "msg", "text": "55", "time": "Thu Jan 19 22:30:15 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-19 22:30:49,864 - DEBUG    - client_2 - The message {"action": "msg", "text": "55", "time": "Thu Jan 19 22:30:49 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:36:38,394 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:36:38 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:36:49,206 - DEBUG    - client_2 - The message {"action": "msg", "text": "56", "time": "Thu Jan 19 22:36:49 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:40:36,835 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:40:36 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:40:44,190 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Thu Jan 19 22:40:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Helen"} is sent
+2023-01-19 22:41:11,140 - DEBUG    - client_2 - The message {"action": "msg", "text": "57", "time": "Thu Jan 19 22:41:11 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:41:48,160 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:41:48 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:41:57,214 - DEBUG    - client_2 - The message {"action": "msg", "text": "58", "time": "Thu Jan 19 22:41:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:43:46,714 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:43:46 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:47:21,996 - DEBUG    - client_2 - The message {"action": "msg", "text": "59", "time": "Thu Jan 19 22:47:18 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:51:21,831 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:51:21 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:51:29,915 - DEBUG    - client_2 - The message {"action": "msg", "text": "60", "time": "Thu Jan 19 22:51:29 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:54:04,261 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:54:04 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:54:11,176 - DEBUG    - client_2 - The message {"action": "msg", "text": "61", "time": "Thu Jan 19 22:54:11 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 22:58:43,781 - DEBUG    - client_2 - The message {"action": "presence", "time": "Thu Jan 19 22:58:43 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 22:58:48,390 - DEBUG    - client_2 - The message {"action": "msg", "text": "62", "time": "Thu Jan 19 22:58:48 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 23:12:02,862 - DEBUG    - client_read - client-read start
+2023-01-19 23:14:07,858 - DEBUG    - client_read - client-read start
+2023-01-19 23:15:35,504 - DEBUG    - client_read - client-read start
+2023-01-19 23:16:04,626 - ERROR    - client_read - [WinError 10054] Удаленный хост принудительно разорвал существующее подключение
+2023-01-19 23:16:04,626 - DEBUG    - client_read - recieve finished
+2023-01-19 23:16:04,627 - ERROR    - client_read - [WinError 10054] Удаленный хост принудительно разорвал существующее подключение
+2023-01-19 23:16:04,627 - DEBUG    - client_read - recieve finished
+2023-01-19 23:16:05,509 - DEBUG    - client_read - client-read finished
+2023-01-19 23:16:07,872 - DEBUG    - client_read - client-read finished
+2023-01-19 23:20:20,916 - DEBUG    - client_read - client-read start
+2023-01-19 23:21:21,450 - DEBUG    - client_read - client-read start
+2023-01-19 23:23:24,737 - DEBUG    - client_read - client-read start
+2023-01-19 23:23:24,809 - DEBUG    - client_write - The message {"action": "presence", "time": "Thu Jan 19 23:23:24 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-19 23:23:29,811 - DEBUG    - client_write - The message {"action": "msg", "text": "Anybody is here?", "time": "Thu Jan 19 23:23:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 23:23:34,814 - DEBUG    - client_write - The message {"action": "msg", "text": "It seems, there are nobody", "time": "Thu Jan 19 23:23:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-19 23:23:44,813 - DEBUG    - client_write - client-write finished
+2023-01-19 23:24:48,212 - ERROR    - client_read - [WinError 10054] Удаленный хост принудительно разорвал существующее подключение
+2023-01-19 23:24:48,213 - DEBUG    - client_read - recieve finished
+2023-01-20 11:51:39,513 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 11:51:39 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 11:51:44,515 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 11:51:39 2023", "user_login": "Mary"} is sent
+2023-01-20 11:51:44,549 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 11:51:49,541 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 11:51:49,550 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 11:51:39 2023", "user_login": "Mary"} is sent
+2023-01-20 11:51:49,558 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 11:51:51,542 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-20 11:51:54,559 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Fri Jan 20 11:51:39 2023", "user_login": "Mary"} is sent
+2023-01-20 11:51:54,569 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-20 11:51:54,583 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-20 11:51:59,585 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 11:51:39 2023", "user_login": "Mary"} is sent
+2023-01-20 11:51:59,597 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 11:51:59,610 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 11:52:04,612 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 11:51:39 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 11:52:28,967 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 11:52:28 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 11:52:33,968 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 11:52:28 2023", "user_login": "Mary"} is sent
+2023-01-20 11:52:33,988 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 11:52:38,989 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 11:52:28 2023", "user_login": "Mary"} is sent
+2023-01-20 11:52:39,019 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 11:52:39,032 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 11:52:41,033 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-20 11:52:44,021 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Fri Jan 20 11:52:28 2023", "user_login": "Mary"} is sent
+2023-01-20 11:52:44,026 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-20 11:52:44,031 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-20 11:52:49,032 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 11:52:28 2023", "user_login": "Mary"} is sent
+2023-01-20 11:52:49,043 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 11:52:49,048 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 11:52:54,049 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 11:52:28 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 11:53:08,970 - DEBUG    - client_2 - client finished
+2023-01-20 11:59:05,873 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 11:59:05 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 11:59:10,875 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 11:59:05 2023", "user_login": "Mary"} is sent
+2023-01-20 11:59:10,898 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 11:59:15,900 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 11:59:05 2023", "user_login": "Mary"} is sent
+2023-01-20 11:59:15,916 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 11:59:15,922 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 11:59:17,924 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-20 11:59:20,918 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Fri Jan 20 11:59:05 2023", "user_login": "Mary"} is sent
+2023-01-20 11:59:20,925 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-20 11:59:20,965 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-20 11:59:25,967 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 11:59:05 2023", "user_login": "Mary"} is sent
+2023-01-20 11:59:25,979 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 11:59:25,992 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 11:59:30,994 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 11:59:05 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 11:59:45,876 - DEBUG    - client_2 - The message {"action": "exit", "time": "Fri Jan 20 11:59:45 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 11:59:45,876 - DEBUG    - client_2 - client finished
+2023-01-20 12:07:14,273 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:07:14 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:07:19,275 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:07:14 2023", "user_login": "Mary"} is sent
+2023-01-20 12:07:19,294 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:07:24,295 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 12:07:14 2023", "user_login": "Mary"} is sent
+2023-01-20 12:07:24,307 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 12:07:24,351 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 12:07:26,352 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-20 12:07:29,309 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Fri Jan 20 12:07:14 2023", "user_login": "Mary"} is sent
+2023-01-20 12:07:29,319 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-20 12:07:29,320 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-20 12:07:34,321 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:07:14 2023", "user_login": "Mary"} is sent
+2023-01-20 12:07:34,345 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:07:34,346 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 12:07:53,722 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:07:53 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:07:58,723 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:07:53 2023", "user_login": "Mary"} is sent
+2023-01-20 12:07:58,747 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:08:03,749 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 12:07:53 2023", "user_login": "Mary"} is sent
+2023-01-20 12:08:03,760 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 12:08:03,772 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 12:08:05,773 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-20 12:09:22,530 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:09:22 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:09:27,532 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:09:22 2023", "user_login": "Mary"} is sent
+2023-01-20 12:09:27,555 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:09:32,556 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 12:09:22 2023", "user_login": "Mary"} is sent
+2023-01-20 12:09:32,562 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 12:09:37,564 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Fri Jan 20 12:09:22 2023", "user_login": "Mary"} is sent
+2023-01-20 12:09:37,574 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-20 12:09:42,575 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:09:22 2023", "user_login": "Mary"} is sent
+2023-01-20 12:09:42,599 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:09:47,601 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 12:09:22 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:10:02,534 - DEBUG    - client_2 - The message {"action": "exit", "time": "Fri Jan 20 12:10:02 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:10:02,534 - DEBUG    - client_2 - client finished
+2023-01-20 12:14:24,598 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:14:24 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:14:26,599 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 12:14:29,600 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:14:24 2023", "user_login": "Mary"} is sent
+2023-01-20 12:14:29,621 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 12:14:29,640 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:14:34,642 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Bob", "time": "Fri Jan 20 12:14:24 2023", "user_login": "Mary"} is sent
+2023-01-20 12:14:34,648 - DEBUG    - client_2 - The message {"response": 400, "alert": "Already in contacts"} is recieved 
+2023-01-20 12:14:34,652 - DEBUG    - client_2 - Bob уже в списке контактов
+2023-01-20 12:14:39,653 - DEBUG    - client_2 - The message {"action": "del_contact", "user_id": "Bill", "time": "Fri Jan 20 12:14:24 2023", "user_login": "Mary"} is sent
+2023-01-20 12:14:39,657 - DEBUG    - client_2 - The message {"response": 400, "alert": "Bill not in your contacts"} is recieved 
+2023-01-20 12:14:39,661 - DEBUG    - client_2 - Bill ошибка удаления
+2023-01-20 12:14:44,662 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:14:24 2023", "user_login": "Mary"} is sent
+2023-01-20 12:14:44,677 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 12:14:44,684 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:14:49,685 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 12:14:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:15:04,600 - DEBUG    - client_2 - The message {"action": "exit", "time": "Fri Jan 20 12:15:04 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:15:04,601 - DEBUG    - client_2 - client finished
+2023-01-20 12:16:01,551 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:16:01 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:16:03,552 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 12:16:06,553 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 12:16:01 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:16:11,583 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:16:01 2023", "user_login": "Mary"} is sent
+2023-01-20 12:16:11,599 - DEBUG    - client_2 - The message {"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 12:16:11,620 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:16:16,622 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 12:16:01 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:16:31,552 - DEBUG    - client_2 - The message {"action": "exit", "time": "Fri Jan 20 12:16:31 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:16:31,552 - DEBUG    - client_2 - client finished
+2023-01-20 12:18:02,129 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:18:02 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:18:04,130 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 12:18:07,130 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 12:18:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:18:12,164 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:18:02 2023", "user_login": "Mary"} is sent
+2023-01-20 12:18:12,182 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:18:17,184 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 12:18:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:18:32,136 - DEBUG    - client_2 - The message {"action": "exit", "time": "Fri Jan 20 12:18:32 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:18:32,136 - DEBUG    - client_2 - client finished
+2023-01-20 12:51:36,886 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:51:29 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:51:41,888 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 12:51:34 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:51:46,969 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:51:36 2023", "user_login": "Mary"} is sent
+2023-01-20 12:51:47,013 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:52:14,012 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 12:52:02 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 12:52:35,491 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 12:52:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:53:16,606 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 12:52:02 2023", "user_login": "Mary"} is sent
+2023-01-20 12:53:24,857 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 12:53:38,740 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 12:52:02 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 12:54:05,474 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 13:00:22,394 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:00:22 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:00:27,395 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:00:22 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:00:32,425 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:00:22 2023", "user_login": "Mary"} is sent
+2023-01-20 13:00:32,445 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:00:37,446 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:00:22 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:01:33,676 - ERROR    - client_2 - 
+2023-01-20 13:01:33,677 - DEBUG    - client_2 - recieve finished
+2023-01-20 13:01:51,290 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:01:51 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:01:56,292 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:01:51 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:02:01,322 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:01:51 2023", "user_login": "Mary"} is sent
+2023-01-20 13:02:01,368 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:02:06,368 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:01:51 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:02:58,390 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:02:58 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:03:03,391 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:02:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:03:08,428 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:02:58 2023", "user_login": "Mary"} is sent
+2023-01-20 13:03:08,450 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:03:13,467 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:02:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:03:20,533 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:02:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]}{"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:02:58 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 13:05:24,760 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:05:24 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:05:29,761 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:05:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:05:34,788 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:05:24 2023", "user_login": "Mary"} is sent
+2023-01-20 13:05:34,814 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:05:39,814 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:05:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:05:46,837 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:05:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]}{"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:05:24 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 13:07:20,381 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:07:20 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:07:25,381 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:07:20 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:07:30,408 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:07:20 2023", "user_login": "Mary"} is sent
+2023-01-20 13:07:30,435 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:07:35,461 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:07:20 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:09:26,557 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:09:26 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:09:31,559 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:09:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:09:36,592 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:09:26 2023", "user_login": "Mary"} is sent
+2023-01-20 13:09:36,619 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:09:41,637 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:09:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:09:48,676 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:09:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]}{"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:09:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 13:18:38,643 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:18:38 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:18:40,646 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 13:21:44,447 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:21:44 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:21:49,448 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:21:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:21:54,486 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:21:44 2023", "user_login": "Mary"} is sent
+2023-01-20 13:21:54,520 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:21:59,520 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:21:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:22:06,560 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:21:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]}{"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:21:44 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 13:22:59,089 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:22:59 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:23:01,313 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 13:25:54,809 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:25:50 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:26:17,188 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 13:42:48,798 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 13:42:48 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 13:42:53,798 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 13:42:48 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:42:58,845 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 13:42:48 2023", "user_login": "Mary"} is sent
+2023-01-20 13:42:58,878 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 13:43:03,878 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 13:42:48 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 13:43:10,905 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]} is recieved 
+2023-01-20 14:05:42,056 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:05:42 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:05:44,035 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:08:12,385 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:08:12 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:08:14,445 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:09:40,726 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:09:40 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:09:42,732 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:10:48,694 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:10:48 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:10:50,629 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 14:10:50 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:11:38,908 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:11:38 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:11:40,817 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 14:11:40 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:11:41,024 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:14:56,462 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:14:56 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:14:58,451 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:16:18,155 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:16:18 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:16:20,161 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 14:16:20 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:16:22,180 - DEBUG    - client_2 - The message {"action": "msg", "text": "Hello again", "time": "Fri Jan 20 14:16:22 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:22:15,010 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:22:15 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:22:17,012 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:24:11,445 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:24:03 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:24:23,598 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:30:14,968 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:30:14 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:30:16,971 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:33:05,343 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:33:05 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:34:04,296 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:34:00 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:34:35,289 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:34:35 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:35:40,551 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:35:40 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:35:55,716 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:35:55 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:37:53,847 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:37:53 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:38:15,016 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:38:15 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:39:33,912 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:39:33 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:43:25,575 - DEBUG    - client_2 - The message {"action": "msg", "text": "123", "time": "Fri Jan 20 14:43:22 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:44:16,137 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:44:16 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:52:26,379 - ERROR    - client_2 - [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение
+2023-01-20 14:52:32,500 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:52:32 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:52:37,502 - DEBUG    - client_2 - The message {"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 14:52:32 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:52:42,529 - DEBUG    - client_2 - The message {"action": "get_contacts", "time": "Fri Jan 20 14:52:32 2023", "user_login": "Mary"} is sent
+2023-01-20 14:52:42,550 - DEBUG    - client_2 - Cписок контактов: ['Thomas', 'Bob', 'Mia', 'Helen', 'Mary', 'all', 'Cris'] 
+2023-01-20 14:52:47,552 - DEBUG    - client_2 - The message {"action": "msg", "text": "Good bue", "time": "Fri Jan 20 14:52:32 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 14:52:54,581 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"}{"action": "msg", "text": "Anybody is here?", "time": "Fri Jan 20 14:52:32 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"}{"response": 202, "alert": ["Bob", "Thomas", "Mary"]}{"action": "msg", "text": "Good bue", "time": "Fri Jan 20 14:52:32 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 14:53:29,821 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:53:29 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:53:31,824 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 14:56:31,949 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 14:56:31 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 14:56:33,953 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 15:01:08,392 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 15:01:08 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 15:15:40,424 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 15:15:40 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 15:15:42,441 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 15:17:43,924 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 15:17:43 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 15:17:45,933 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 15:17:50,663 - DEBUG    - client_2 - The message {"action": "msg", "text": "53", "time": "Fri Jan 20 15:17:50 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-20 15:19:38,000 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Fri Jan 20 15:19:37 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 15:19:38,191 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Fri Jan 20 15:19:37 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 15:23:01,693 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 15:23:01 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 15:28:47,243 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 15:28:47 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 15:28:49,248 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 15:29:17,827 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 15:29:17 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 15:29:19,846 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:13:27,569 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:13:27 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:13:29,613 - ERROR    - client_window - 'Ui_chatWindow' object has no attribute 's'
+2023-01-20 20:13:29,613 - DEBUG    - client_window - recieve finished
+2023-01-20 20:13:36,795 - DEBUG    - client_2 - The message {"action": "msg", "text": "1", "time": "Fri Jan 20 20:13:36 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:14:11,101 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:14:11 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:14:21,598 - ERROR    - client_window - 'Ui_chatWindow' object has no attribute 's'
+2023-01-20 20:14:22,246 - DEBUG    - client_window - recieve finished
+2023-01-20 20:15:33,970 - DEBUG    - client_2 - The message {"action": "msg", "text": "2", "time": "Fri Jan 20 20:15:30 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:17:01,518 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:17:01 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:17:03,530 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:17:09,129 - DEBUG    - client_2 - The message {"action": "msg", "text": "3", "time": "Fri Jan 20 20:17:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:17:09,132 - DEBUG    - client_2 - The message {"action": "msg", "text": "3", "time": "Fri Jan 20 20:17:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:17:09,180 - ERROR    - client_2 - (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 17900 and this is thread id 19464.
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2023-01-20 20:17:09,180 - DEBUG    - client_2 - recieve finished
+2023-01-20 20:18:14,020 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:18:14 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:18:16,038 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:18:19,801 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Fri Jan 20 20:18:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:18:19,803 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Fri Jan 20 20:18:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:18:19,844 - ERROR    - client_2 - (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8980 and this is thread id 16220.
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2023-01-20 20:18:19,844 - DEBUG    - client_2 - recieve finished
+2023-01-20 20:20:50,354 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:20:50 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:20:52,363 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:20:56,609 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Fri Jan 20 20:20:56 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:20:56,612 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Fri Jan 20 20:20:56 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:24:12,736 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:24:12 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:24:15,471 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:24:27,191 - DEBUG    - client_2 - The message {"action": "msg", "text": "54", "time": "Fri Jan 20 20:24:27 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-20 20:25:50,420 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:25:50 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:25:52,436 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:25:56,815 - DEBUG    - client_2 - The message {"action": "msg", "text": "4", "time": "Fri Jan 20 20:25:56 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-20 20:27:18,893 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Fri Jan 20 20:27:18 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:27:18,895 - DEBUG    - client_2 - The message {"action": "msg", "text": "5", "time": "Fri Jan 20 20:27:18 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:27:18,934 - ERROR    - client_2 - (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8952 and this is thread id 16880.
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2023-01-20 20:27:18,935 - DEBUG    - client_2 - recieve finished
+2023-01-20 20:28:52,606 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:28:52 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:28:54,907 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:29:09,196 - DEBUG    - client_2 - The message {"action": "msg", "text": "6", "time": "Fri Jan 20 20:29:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:29:09,200 - DEBUG    - client_2 - The message {"action": "msg", "text": "6", "time": "Fri Jan 20 20:29:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:29:09,300 - ERROR    - client_2 - (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 14676 and this is thread id 18708.
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2023-01-20 20:29:09,301 - DEBUG    - client_2 - recieve finished
+2023-01-20 20:29:19,253 - DEBUG    - client_2 - The message {"action": "msg", "text": "7", "time": "Fri Jan 20 20:29:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:31:23,508 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:31:23 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:31:25,513 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:31:33,467 - DEBUG    - client_2 - The message {"action": "msg", "text": "8", "time": "Fri Jan 20 20:31:33 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:31:33,469 - DEBUG    - client_2 - The message {"action": "msg", "text": "8", "time": "Fri Jan 20 20:31:33 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:31:33,498 - ERROR    - client_2 - (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 13508 and this is thread id 8868.
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2023-01-20 20:31:33,499 - DEBUG    - client_2 - recieve finished
+2023-01-20 20:32:37,972 - DEBUG    - client_2 - The message {"action": "msg", "text": "9", "time": "Fri Jan 20 20:32:37 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:34:58,812 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:34:58 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:35:00,815 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:35:04,747 - DEBUG    - client_2 - The message {"action": "msg", "text": "10", "time": "Fri Jan 20 20:35:04 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:35:04,950 - DEBUG    - client_2 - The message {"action": "msg", "text": "10", "time": "Fri Jan 20 20:35:04 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:35:14,402 - DEBUG    - client_2 - The message {"action": "msg", "text": "11", "time": "Fri Jan 20 20:35:14 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:35:14,404 - DEBUG    - client_2 - The message {"action": "msg", "text": "11", "time": "Fri Jan 20 20:35:14 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:35:25,755 - DEBUG    - client_2 - The message {"action": "msg", "text": "54", "time": "Fri Jan 20 20:35:25 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-20 20:41:51,029 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:41:51 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:41:53,048 - ERROR    - client_window - 'Ui_chatWindow' object has no attribute 's'
+2023-01-20 20:41:53,048 - DEBUG    - client_window - recieve finished
+2023-01-20 20:41:57,456 - DEBUG    - client_2 - The message {"action": "msg", "text": "12", "time": "Fri Jan 20 20:41:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:44:28,145 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:44:28 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:44:30,163 - DEBUG    - client_window - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:44:35,934 - DEBUG    - client_2 - The message {"action": "msg", "text": "13", "time": "Fri Jan 20 20:44:35 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:44:35,936 - DEBUG    - client_window - The message {"action": "msg", "text": "13", "time": "Fri Jan 20 20:44:35 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:44:35,936 - ERROR    - client_window - 'Ui_chatWindow' object has no attribute 'add_msg_in_history'
+2023-01-20 20:44:35,937 - DEBUG    - client_window - recieve finished
+2023-01-20 20:45:12,533 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:45:12 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:45:14,537 - DEBUG    - client_window - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:45:17,461 - DEBUG    - client_2 - The message {"action": "msg", "text": "14", "time": "Fri Jan 20 20:45:17 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:45:17,463 - DEBUG    - client_window - The message {"action": "msg", "text": "14", "time": "Fri Jan 20 20:45:17 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:45:51,088 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:45:51 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:45:53,099 - DEBUG    - client_window - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:45:57,135 - DEBUG    - client_2 - The message {"action": "msg", "text": "15", "time": "Fri Jan 20 20:45:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:45:57,138 - DEBUG    - client_window - The message {"action": "msg", "text": "15", "time": "Fri Jan 20 20:45:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:46:47,597 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:46:47 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:46:49,610 - DEBUG    - client_window - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:46:57,418 - DEBUG    - client_2 - The message {"action": "msg", "text": "16", "time": "Fri Jan 20 20:46:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:46:57,422 - DEBUG    - client_window - The message {"action": "msg", "text": "16", "time": "Fri Jan 20 20:46:57 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:49:25,429 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:49:25 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:49:27,440 - DEBUG    - client_window - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:49:32,732 - DEBUG    - client_2 - The message {"action": "msg", "text": "17", "time": "Fri Jan 20 20:49:32 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 20:49:32,735 - DEBUG    - client_window - The message {"action": "msg", "text": "17", "time": "Fri Jan 20 20:49:32 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 20:50:51,664 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 20:50:51 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 20:50:53,669 - DEBUG    - client_window - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 20:51:02,832 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Lola", "time": "Fri Jan 20 20:51:02 2023", "user_login": "Mary"} is sent
+2023-01-20 21:05:17,763 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:05:17 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 21:05:19,785 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:05:26,669 - DEBUG    - client_2 - The message {"action": "msg", "text": "18", "time": "Fri Jan 20 21:05:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 21:05:26,907 - DEBUG    - client_2 - The message {"action": "msg", "text": "18", "time": "Fri Jan 20 21:05:26 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-20 21:07:04,395 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:07:04 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 21:07:17,724 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:07:37,874 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:07:37 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 21:07:40,112 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:10:01,708 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:10:01 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 21:10:03,741 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:10:19,156 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Fri Jan 20 21:10:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is sent
+2023-01-20 21:10:19,157 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Fri Jan 20 21:10:19 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Mary"} is recieved 
+2023-01-20 21:11:37,244 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:11:37 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 21:11:39,251 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:12:24,195 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:12:24 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-20 21:12:26,475 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:14:12,457 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:14:09 2023", "user": {"name": "Thomas", "status": "here"}} is sent
+2023-01-20 21:14:32,047 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:16:17,870 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:16:17 2023", "user": {"name": "Thomas", "status": "here"}} is sent
+2023-01-20 21:16:19,875 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:30:03,871 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:30:03 2023", "user": {"name": "lll", "status": "here"}} is sent
+2023-01-20 21:30:05,874 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:31:07,244 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:31:07 2023", "user": {"name": "lll", "status": "here"}} is sent
+2023-01-20 21:32:56,198 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 20 21:32:56 2023", "user": {"name": "lll", "status": "here"}} is sent
+2023-01-20 21:32:58,200 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-20 21:33:04,371 - DEBUG    - client_2 - The message {"action": "msg", "text": "1", "time": "Fri Jan 20 21:33:04 2023", "user": {"name": "lll", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-20 21:33:12,066 - DEBUG    - client_2 - The message {"action": "msg", "text": "2", "time": "Fri Jan 20 21:33:12 2023", "user": {"name": "lll", "status": "here"}, "to_user": "Bob"} is sent
+2023-01-20 21:33:17,705 - DEBUG    - client_2 - The message {"action": "msg", "text": "3", "time": "Fri Jan 20 21:33:17 2023", "user": {"name": "lll", "status": "here"}, "to_user": "all"} is sent
+2023-01-20 21:33:17,862 - DEBUG    - client_2 - The message {"action": "msg", "text": "3", "time": "Fri Jan 20 21:33:17 2023", "user": {"name": "lll", "status": "here"}, "to_user": "all"} is recieved 

@@ -12,15 +12,15 @@ logger=logging.getLogger('server')
 from sqlalchemy import create_engine, and_
 from Database_creation import Client_history, Client_table, Client_list
 from sqlalchemy.orm import sessionmaker, query
-
+import threading
 
 
 port=7777
 host='localhost'
 database= 'sqlite:///server_base.db3'
 ip=''
+class Server(threading.Thread, metaclass=ServerVerify):
 
-class Server(metaclass=ServerVerify):
     def __init__(self, port, ip, database):
         self.port=port
         self.ip=ip
@@ -29,6 +29,43 @@ class Server(metaclass=ServerVerify):
         engine = create_engine(self.database, echo=True)
         Session = sessionmaker(bind=engine)
         self.session = Session()
+
+        self.clients = []
+        self.client_host_port = {}
+        self.names = {}
+
+        super().__init__()
+
+    def run(self):
+        socket = self.get_socket()
+
+        while 1:
+            try:
+                client, addr = socket.accept()
+                logger.debug(f'Запрос получен от {str(addr)}')
+                self.client_host_port[client] = addr
+                self.clients.append(client)
+                r = []
+                w = []
+                try:
+                    if self.clients:
+                        r, w, e = select.select(self.clients, self.clients, [], 10)
+                        r=w
+                except:
+                    pass
+                while 1:
+                    try:
+                        if w:
+                            msgs, names = self.recieve(w, self.names, self.clients, self.client_host_port)
+                            if 'all' in msgs:
+                                self.send_to_all(msgs, r)
+                            if msgs:
+                                self.send_to_user(names, msgs)
+                    except:
+                        break
+            except OSError as e:
+                pass
+                #logger.error(e)
 
     def log(func):
         @wraps(func)
@@ -50,7 +87,7 @@ class Server(metaclass=ServerVerify):
                             logger.debug(f'{msg} is sent')
                         except:
                             c.close()
-                            clients.remove(c)
+                            self.clients.remove(c)
                             logger.error('Клиент отключился')
                 msgs.pop('all')
             else:
@@ -60,7 +97,7 @@ class Server(metaclass=ServerVerify):
                         logger.debug(f'{group_messages} is sent')
                     except:
                         c.close()
-                        clients.remove(c)
+                        self.clients.remove(c)
                         logger.error('Клиент отключился')
         except BaseException as e:
             logger.error(e)
@@ -83,6 +120,7 @@ class Server(metaclass=ServerVerify):
                     logger.error('Такого пользователя в чате нет')
         except BaseException as e:
             logger.error(e)
+
     def recieve(self, r, names, clients, client_host_port):
         msgs= {}
         for client in r:
@@ -102,6 +140,8 @@ class Server(metaclass=ServerVerify):
 
                             msgs[json_data['user']['name']]=[json.dumps({'response': 200, 'alert': 'ok'})]
 
+                        elif json_data['action'] == 'exit':
+                            pass
                         elif json_data['action'] == 'msg':
                             logger.debug('got message')
                             try:
@@ -160,7 +200,10 @@ class Server(metaclass=ServerVerify):
     def get_socket(self):
         s=socket(AF_INET, SOCK_STREAM)
         s.bind((self.ip, self.port))
-        s.listen(5)
+        s.settimeout(0.5)
+
+        s.listen(10)
+
         return s
 
     def del_contact(self, nickname, name):
@@ -246,39 +289,13 @@ class Server(metaclass=ServerVerify):
 
 if __name__=='__main__':
 
-    s= Server(port, ip, database)
-    socket=s.get_socket()
-    clients=[]
-    client_host_port={}
-    names={}
+    server= Server(port, ip, database)
+
+    server.daemon = True
+    server.run()
 
 
 
-    while 1:
-        try:
-            client, addr = socket.accept()
-            logger.debug(f'Запрос получен от {str(addr)}')
-            client_host_port[client]=addr
-            clients.append(client)
-            r = []
-            w = []
-            try:
-                if clients:
-                    r, w, e = select.select(clients, clients, [], 10)
-                    r=clients
-            except:
-                pass
-            while 1:
-                try:
-                    if r:
-                        msgs, names = s.recieve(r, names, clients, client_host_port)
-                    if 'all' in msgs:
-                        s.send_to_all(msgs, w)
-                    if msgs:
-                        s.send_to_user(names, msgs)
-                except:
-                    break
-        except OSError as e:
-            logger.error(e)
+
 
 

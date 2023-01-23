@@ -11,19 +11,27 @@ from Metaclasses import ClientVerify
 host='localhost'
 from descriptor import Port
 from Client_database_creation import Contact, Msg_history, Contact_list
-from sqlalchemy import create_engine, and_
-from sqlalchemy.orm import sessionmaker, query
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-class Client(metaclass=ClientVerify):
+socket_lock = threading.Lock()
+
+class Client(threading.Thread ,metaclass=ClientVerify):
     port = Port()
 
     def __init__(self, name, port_val, host_val):
+        threading.Thread.__init__(self)
         self.port=port_val
         self.host=host_val
         self.name=name
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((self.host, self.port))
         self.s=s
+        engine = create_engine('sqlite:///client_base.db3')
+        Session = sessionmaker(bind=engine)
+        self.session = Session()
+        self.got_message=False
+
 
     def get_contacts(self):
         return json.dumps({"action": "get_contacts","time": time.ctime(),"user_login": self.name})
@@ -38,6 +46,11 @@ class Client(metaclass=ClientVerify):
         return json.dumps({"action": "presence",
                 "time": time.ctime(),
                 "user":{"name": self.name,"status": "here"}})
+
+    def create_exit_msg(self):
+        return json.dumps({"action": "exit",
+                           "time": time.ctime(),
+                           "user": {"name": self.name, "status": "here"}})
 
     def create_msg(self,to_user, text):
         return json.dumps({"action": "msg",
@@ -57,7 +70,7 @@ class Client(metaclass=ClientVerify):
             logger.debug(f'The message {msg} is sent')
             msg= json.loads(msg)
             if msg['action']=="msg":
-               self.add_msg_in_history(msg)
+               self.add_msg_in_history(msg, True)
             elif msg['action'] == "add_contact":
                 self.contact_in_database(msg['user_id'], 'add')
             elif msg['action'] == "del_contact":
@@ -69,68 +82,83 @@ class Client(metaclass=ClientVerify):
             logger.error(e)
 
     def contact_in_database(self, nickname, command):
-        engine = create_engine('sqlite:///client_base.db3')
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        try:
 
-            client=session.query(Contact).filter_by(name=self.name).first()
-            contact = session.query(Contact).filter_by(name=nickname).first()
+        try:
+            client=self.session.query(Contact).filter_by(name=self.name).first()
+            contact = self.session.query(Contact).filter_by(name=nickname).first()
             if contact is None:
                 contact = Contact(nickname)
-                session.add(contact)
-                session.commit()
+                self.session.add(contact)
+                self.session.commit()
             if client is None:
                 client = Contact(self.name)
-                session.add(client)
-                session.commit()
+                self.session.add(client)
+                self.session.commit()
             if command == 'add':
-                contact_list = session.query(Contact_list).filter_by(contact_id=contact.id, host_id=client.id).first()
+                contact_list = self.session.query(Contact_list).filter_by(contact_id=contact.id, host_id=client.id).first()
 
                 if contact_list is None:
                     contact_list = Contact_list(client.id, contact.id)
-                    session.add(contact_list)
-                    session.commit()
+                    self.session.add(contact_list)
+                    self.session.commit()
                 else: logger.debug(f'{nickname} уже в списке контактов')
             elif command=='del':
                 try:
-                    contact_list = session.query(Contact_list).filter_by(contact_id=contact.id,
+                    contact_list = self.session.query(Contact_list).filter_by(contact_id=contact.id,
                                                                          host_id=client.id).first()
-                    session.delete(contact_list)
-                    session.commit()
+                    self.session.delete(contact_list)
+                    self.session.commit()
                     logger.debug(f'{nickname} удален из списка контактов')
                 except:
                     logger.debug(f'{nickname} ошибка удаления')
             elif command=='get':
                 result=[]
-                contact_list = session.query(Contact_list).all()
+                contact_list = self.session.query(Contact_list).all()
                 for line in contact_list:
-                    contact=session.query(Contact).filter_by(id=line.contact_id).first()
+                    contact=self.session.query(Contact).filter_by(id=line.contact_id).first()
                     result.append(contact.name)
                 logger.debug(f'Cписок контактов: {result} ')
         except:
-            session.rollback()
+            self.session.rollback()
             logger.debug('Error, can`t add/del/get contact ')
 
-    def add_msg_in_history(self, msg):
-        engine = create_engine('sqlite:///client_base.db3')
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        try:
-            client=session.query(Contact).filter_by(name=self.name).first()
-            if client is None:
-                client = Contact(self.name)
-                session.add(client)
-            contact = session.query(Contact).filter_by(name=msg['to_user']).first()
-            if contact is None:
-                contact = Contact(msg['to_user'])
-                session.add(contact)
-            msg = Msg_history(client.name, contact.name, msg['text'])
-            session.add(msg)
-            session.commit()
-        except:
-            session.rollback()
-            logger.debug('Error, can`t add message into database')
+    def add_msg_in_history(self, msg, send=True):
+        with socket_lock:
+            if send:
+                try:
+                    client=self.session.query(Contact).filter_by(name=self.name).first()
+                    if client is None:
+                        client = Contact(self.name)
+                        self.session.add(client)
+                    contact = self.session.query(Contact).filter_by(name=msg['to_user']).first()
+                    if contact is None:
+                        contact = Contact(msg['to_user'])
+                        self.session.add(contact)
+                    msg = Msg_history(client.name, contact.name, msg['text'])
+                    self.session.add(msg)
+                    self.session.commit()
+                except:
+                    self.session.rollback()
+                    logger.debug('Error, can`t add message into database')
+            else:
+                try:
+                    client=self.session.query(Contact).filter_by(name=msg['to_user']).first()
+                    if client is None:
+                        client = Contact(self.name)
+                        self.session.add(client)
+                    contact = self.session.query(Contact).filter_by(name=msg['user']['name']).first()
+                    if contact is None:
+                        contact = Contact(msg['to_user'])
+                        self.session.add(contact)
+                    msg = Msg_history(contact.name, client.name, msg['text'])
+                    self.session.add(msg)
+                    self.session.commit()
+
+                    self.got_message = True
+                except:
+                    self.session.rollback()
+                    logger.debug('Error, can`t add message into database')
+
     def user_communication(self):
         name=input('Please, enter your name')
         while 1:
@@ -141,9 +169,9 @@ class Client(metaclass=ClientVerify):
                 self.send(self.create_msg(name, msg), self.s)
 
     def recieve(self):
+        time.sleep(2)
         while True:
             try:
-                time.sleep(2)
                 data = self.s.recv(10000)
                 logger.debug(f'The message {data.decode("utf-8")} is recieved ')
                 data= data.decode("utf-8")
@@ -152,14 +180,13 @@ class Client(metaclass=ClientVerify):
                 for msg in msgs_in_data:
                     json_data = json.loads(msg)
                     if json_data.get('action'):
-                        self.add_msg_in_history(json_data)
+                        self.add_msg_in_history(json_data, False)
             except BaseException as e:
                 logger.error(e)
                 logger.debug(f'recieve finished')
                 break
 
     def message_bot_sender(self):
-
 
         msg = self.create_presence_msg()
         msg_2 = self.create_msg('all', "Anybody is here?")
@@ -171,7 +198,7 @@ class Client(metaclass=ClientVerify):
         msg_7=self.del_contact('Bill')
         msg_8=self.add_contact('Bill')
         msg_9 = self.add_contact('Bob')
-        msgs = [msg, msg_5, msg_9, msg_7, msg_5, msg_4]
+        msgs = [msg, msg_2, msg_5, msg_4]
 
         for msg in msgs:
             self.send(msg)
@@ -182,23 +209,37 @@ if __name__=='__main__':
 
         Mary=Client('Mary',7777, host)
 
+        Mary.message_bot_sender()
+
+        Mary.setDaemon(True)
+        Mary.start()
+
+        thr_recieve = threading.Thread(target=Mary.recieve, args=(), daemon=1)
+        thr_recieve.start()
+
+        print('ok')
+
+        while True:
+            if thr_recieve.is_alive():
+                continue
 
 
         #message_bot_sender()
-        thr_send= threading.Thread(target=Mary.message_bot_sender,args=(), daemon=1)
-        thr_send.start()
-
-        # recieve(s)
-
-        thr_recieve= threading.Thread(target=Mary.recieve, args=(), daemon=1)
-        thr_recieve.start()
-
-        while True:
-            time.sleep(10)
-            if thr_recieve.is_alive() and thr_send.is_alive():
-                continue
-            break
-        logger.debug(f'client finished')
+        # thr_send= threading.Thread(target=Mary.message_bot_sender,args=(), daemon=1)
+        # thr_send.start()
+        #
+        # # recieve(s)
+        #
+        # thr_recieve= threading.Thread(target=Mary.recieve, args=(), daemon=1)
+        # thr_recieve.start()
+        #
+        # while True:
+        #     time.sleep(10)
+        #     if thr_recieve.is_alive() and thr_send.is_alive():
+        #         continue
+        #     Mary.send(Mary.create_exit_msg())
+        #     break
+        # logger.debug(f'client finished')
 
     except ConnectionRefusedError as e:
         logger.error(e)
