@@ -13,25 +13,48 @@ from descriptor import Port
 from Client_database_creation import Contact, Msg_history, Contact_list
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import hmac
+import os
+import hashlib
+
+secret_key = b'our_secret_key'
+
 
 socket_lock = threading.Lock()
 
 class Client(threading.Thread ,metaclass=ClientVerify):
     port = Port()
 
-    def __init__(self, name, port_val, host_val):
+    def __init__(self, name, port_val, host_val, password):
         threading.Thread.__init__(self)
         self.port=port_val
         self.host=host_val
         self.name=name
+        self.password=password
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((self.host, self.port))
+
+        s.send(json.dumps({'name': self.name, 'password': self.password}).encode('utf-8'))
+
+        #authentification
+        #solt = os.urandom(16).encode()
+        #hash_password = hashlib.pbkdf2_hmac('sha256', self.password.encode(), solt, 100000)
+        message = s.recv(32)
+        hash = hmac.new(secret_key, message, digestmod=hashlib.sha256)
+        digest = hash.digest()
+        s.send(digest)
+
         self.s=s
         engine = create_engine('sqlite:///client_base.db3')
         Session = sessionmaker(bind=engine)
         self.session = Session()
         self.got_message=False
 
+    def client_authenticate(connection):
+        message = connection.recv(32)
+        hash = hmac.new(b'our_secret_key', message, digestmod = hashlib.sha256)
+        digest = hash.digest()
+        connection.send(digest)
 
     def get_contacts(self):
         return json.dumps({"action": "get_contacts","time": time.ctime(),"user_login": self.name})
@@ -207,7 +230,7 @@ class Client(threading.Thread ,metaclass=ClientVerify):
 if __name__=='__main__':
     try:
 
-        Mary=Client('Mary',7777, host)
+        Mary=Client('Mary',7777, host, '1234')
 
         Mary.message_bot_sender()
 

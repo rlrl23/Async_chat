@@ -18,8 +18,6 @@ client_table = Table('Client', metadata,
                      Column('id', Integer, primary_key=True),
                      Column('name', String),
                     Column('is_active', Boolean),
-
-
 )
 
 client_history=Table('Client_history', metadata,
@@ -35,9 +33,16 @@ client_list=Table('Client_list', metadata,
                     Column('contact_id', ForeignKey('Client.id'))
 
                   )
-
+client_password=Table('Client_password', metadata,
+                        Column('password', String),
+                        Column('socket', String, primary_key=True)
+)
 metadata.create_all(engine)
 
+class Client_password:
+    def __init__(self, password, socket):
+        self.password = password
+        self.socket=socket
 
 class Client_table:
     def __init__(self, name, is_active=True):
@@ -59,4 +64,4 @@ class Client_list:
 mapper(Client_table, client_table)
 mapper(Client_history, client_history)
 mapper(Client_list, client_list)
-
+mapper(Client_password, client_password)

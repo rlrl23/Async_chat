@@ -32,7 +32,7 @@ class Ui_chatWindow(object):
         chatWindow.setObjectName("chatWindow")
         chatWindow.resize(555, 444)
 
-        self.User = Client(enter_ui.user_name.text(), 7777, 'localhost')
+        self.User = Client(enter_ui.user_name.text(), 7777, 'localhost', enter_ui.user_password.text())
         self.User.send(self.User.create_presence_msg())
 
         self.session = self.User.session
@@ -141,6 +141,7 @@ class Ui_chatWindow(object):
         if ok:
             self.contact_list_2.addItem(str(text))
             self.User.send(self.User.add_contact(text))
+
     def check_message(self):
         while 1:
             if self.User.got_message:
@@ -161,13 +162,13 @@ class Ui_chatWindow(object):
                         self.User.add_msg_in_history(json_data, False)
                         if self.chat_is_open==json_data['user']['name'] or self.chat_is_open=='all':
                             self.chat.setText(self.chat.toPlainText() + json_data['text'])
-                        #self.client_history()
-                        # new_msg = QtWidgets.QMessageBox(chatWindow)
-                        # new_msg.setWindowTitle("from "+ str(json_data['user']['name']))
-                        # new_msg.setText(json_data['text'])
-                        # new_msg.setStandardButtons(QtWidgets.QMessageBox.Cancel)
-                        #
-                        # new_msg.exec_()
+                        self.client_history()
+                        new_msg = QtWidgets.QMessageBox(chatWindow)
+                        new_msg.setWindowTitle("from "+ str(json_data['user']['name']))
+                        new_msg.setText(json_data['text'])
+                        new_msg.setStandardButtons(QtWidgets.QMessageBox.Cancel)
+
+                        new_msg.exec_()
             except BaseException as e:
                 logger.error(e)
                 logger.debug(f'recieve finished')
@@ -177,17 +178,26 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
+
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setGeometry(QtCore.QRect(30, 240, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
+
         self.lable_name = QtWidgets.QLabel(Dialog)
         self.lable_name.setGeometry(QtCore.QRect(40, 50, 81, 41))
         self.lable_name.setObjectName("lable_name")
         self.user_name = QtWidgets.QLineEdit(Dialog)
         self.user_name.setGeometry(QtCore.QRect(150, 60, 221, 31))
         self.user_name.setObjectName("user_name")
+
+        self.lable_password = QtWidgets.QLabel(Dialog)
+        self.lable_password.setGeometry(QtCore.QRect(40, 110, 81, 41))
+        self.lable_password.setObjectName("lable_password")
+        self.user_password = QtWidgets.QLineEdit(Dialog)
+        self.user_password.setGeometry(QtCore.QRect(150, 110, 221, 31))
+        self.user_password.setObjectName("user_password")
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(self.enter)
@@ -200,10 +210,11 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.lable_name.setText(_translate("Dialog", " login"))
         self.user_name.setText('Mary')
+        self.lable_password.setText(_translate("Dialog", " password"))
+        self.user_password.setText('1234')
 
     def enter(self):
         if self.user_name.text()!='':
-
 
             ui.setupUi(chatWindow)
             chatWindow.show()
