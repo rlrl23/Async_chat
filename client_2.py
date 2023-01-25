@@ -26,6 +26,7 @@ class Client(threading.Thread ,metaclass=ClientVerify):
     port = Port()
 
     def __init__(self, name, port_val, host_val, password):
+        """Документация метода ``__init__``"""
         threading.Thread.__init__(self)
         self.port=port_val
         self.host=host_val
@@ -51,31 +52,38 @@ class Client(threading.Thread ,metaclass=ClientVerify):
         self.got_message=False
 
     def client_authenticate(connection):
+        """Аутентификация клиента"""
         message = connection.recv(32)
         hash = hmac.new(b'our_secret_key', message, digestmod = hashlib.sha256)
         digest = hash.digest()
         connection.send(digest)
 
     def get_contacts(self):
+        """Запрос списка контактов"""
         return json.dumps({"action": "get_contacts","time": time.ctime(),"user_login": self.name})
 
     def add_contact(self, nickname):
+        """Запрос на добавление контакта"""
         return json.dumps({"action": "add_contact","user_id": nickname,"time": time.ctime(),"user_login": self.name})
 
     def del_contact(self, nickname):
+        """Запрос на удаление контакта"""
         return json.dumps({"action": "del_contact","user_id": nickname,"time": time.ctime(),"user_login": self.name})
 
     def create_presence_msg(self):
+        """Формирование presence сообщение"""
         return json.dumps({"action": "presence",
                 "time": time.ctime(),
                 "user":{"name": self.name,"status": "here"}})
 
     def create_exit_msg(self):
+        """Формирование сообщения о выходе"""
         return json.dumps({"action": "exit",
                            "time": time.ctime(),
                            "user": {"name": self.name, "status": "here"}})
 
     def create_msg(self,to_user, text):
+        """Формирование сообщения"""
         return json.dumps({"action": "msg",
                            "text":text,
                 "time": time.ctime(),
@@ -83,11 +91,13 @@ class Client(threading.Thread ,metaclass=ClientVerify):
                           'to_user':to_user})
 
     def get_client_socket(self,port, host):
+        """Установка соединения"""
         s=socket(AF_INET, SOCK_STREAM)
         s.connect((host,port))
         return s
 
     def send(self, msg):
+        """Функция отправки запросов и сообщений"""
         try:
             self.s.send(msg.encode('utf-8'))
             logger.debug(f'The message {msg} is sent')
@@ -105,7 +115,7 @@ class Client(threading.Thread ,metaclass=ClientVerify):
             logger.error(e)
 
     def contact_in_database(self, nickname, command):
-
+        """Добавление контакта в базу данных клиента"""
         try:
             client=self.session.query(Contact).filter_by(name=self.name).first()
             contact = self.session.query(Contact).filter_by(name=nickname).first()
@@ -146,6 +156,7 @@ class Client(threading.Thread ,metaclass=ClientVerify):
             logger.debug('Error, can`t add/del/get contact ')
 
     def add_msg_in_history(self, msg, send=True):
+        """Добаление сообщения в базу данных клиента"""
         with socket_lock:
             if send:
                 try:
@@ -192,6 +203,7 @@ class Client(threading.Thread ,metaclass=ClientVerify):
                 self.send(self.create_msg(name, msg), self.s)
 
     def recieve(self):
+        """Функция получения сообщений"""
         time.sleep(2)
         while True:
             try:

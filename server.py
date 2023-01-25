@@ -1,4 +1,4 @@
-import client
+
 from socket import *
 import json
 import logging
@@ -19,14 +19,20 @@ import os
 import hashlib
 
 port=7777
+
 host='localhost'
+
 database= 'sqlite:///server_base.db3'
+
 ip=''
+
 secret_key = b'our_secret_key'
+
 
 class Server(threading.Thread, metaclass=ServerVerify):
 
     def __init__(self, port, ip, database):
+        """Документация метода ``__init__``"""
         self.port=port
         self.ip=ip
         self.database= database
@@ -42,6 +48,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
         super().__init__()
 
     def run(self):
+        """Функция запуска сервера."""
         socket = self.get_socket()
 
         while 1:
@@ -78,6 +85,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
                 #logger.error(e)
 
     def server_authenticate(self, connection):
+        """Аутентификация клиента"""
         message = os.urandom(32)
         connection.send(message)
         hash = hmac.new(b'our_secret_key', message, digestmod = hashlib.sha256)
@@ -87,6 +95,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
             connection.close()
 
     def identify(self, client):
+        """Идентификация клиента"""
         name_password = client.recv(10000)
         name_password=json.loads(name_password.decode('utf-8'))
         client_password = self.session.query(Client_password).filter_by(socket=name_password['name']).first()
@@ -110,11 +119,6 @@ class Server(threading.Thread, metaclass=ServerVerify):
             else:
                 return True
 
-    def login_required(func):
-        @wraps(func)
-        def call(*args, **kwargs):
-                pass
-
     def log(func):
         @wraps(func)
         def call(*args, **kwargs):
@@ -125,6 +129,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
 
     @log
     def send_to_all(self, msgs, w):
+        """Отправка сообщения всем"""
         try:
             group_messages= msgs['all']
             if type(group_messages)==list:
@@ -151,6 +156,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
             logger.error(e)
 
     def send_to_user(self, names, msgs):
+        """Отправка сообщения клиенту"""
         try:
             for key in msgs:
                 if key in names:
@@ -170,6 +176,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
             logger.error(e)
 
     def recieve(self, r, names, clients, client_host_port):
+        """Получение сообщений, разбор, перенаправление"""
         msgs= {}
         for client in r:
             try:
@@ -246,6 +253,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
                 return msgs, names
 
     def get_socket(self):
+        """Создание подключения"""
         s=socket(AF_INET, SOCK_STREAM)
         s.bind((self.ip, self.port))
         s.settimeout(0.5)
@@ -255,7 +263,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
         return s
 
     def del_contact(self, nickname, name):
-
+        """Удаление контакта"""
         contact = self.session.query(Client_table).filter_by(name=nickname).first()
         if contact is None:
             answer = json.dumps({'response': 400, 'alert': f'{nickname} not in contacts'})
@@ -272,7 +280,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
         return answer
 
     def add_contact(self, nickname, name):
-
+        """Добавление контакта"""
         new_contact = self.session.query(Client_table).filter_by(name=nickname).first()
         if new_contact is None:
             new_contact = Client_table(name=nickname, is_active=False)
@@ -292,6 +300,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
         return answer
 
     def client_contact_list(self, name):
+        """Формирует список контактов клиента"""
         try:
             host = self.session.query(Client_table).filter_by(name=name).first()
             client_list=self.session.query(Client_list).filter_by(host_id=host.id).all()
@@ -306,6 +315,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
             logger.error('DataBase error')
 
     def client_logout(self, name):
+        """Фиксирует выход клиента"""
         try:
             client = self.session.query(Client_table).filter_by(name=name).first()
             client.is_active=False
@@ -316,7 +326,7 @@ class Server(threading.Thread, metaclass=ServerVerify):
             self.session.rollback()
 
     def client_login(self, name, ip):
-
+        """Фиксирует вход клиента"""
         try:
             client= self.session.query(Client_table).filter_by(name=name).first()
             if client is None:

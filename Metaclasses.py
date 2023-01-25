@@ -1,6 +1,11 @@
 import dis
 
 class ClientVerify(type):
+    '''
+       Метакласс, проверяющий что в результирующем классе нет серверных
+       вызовов таких как: accept, listen. Также проверяется, что сокет не
+       создаётся внутри конструктора класса.
+       '''
     def __init__(self, clsname, bases, clsdict):
         error = 0
         socket = 0
@@ -20,6 +25,11 @@ class ClientVerify(type):
             print('Проверка пройдена успешно')
 
 class ServerVerify(type):
+    '''
+        Метакласс, проверяющий что в результирующем классе нет клиентских
+        вызовов таких как: connect. Также проверяется, что серверный
+        сокет является TCP и работает по IPv4 протоколу.
+        '''
     def __init__(self, clsname, bases, clsdict):
         error=0
         socket=0
