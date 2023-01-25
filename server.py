@@ -1,3 +1,4 @@
+import client
 from socket import *
 import json
 import logging
@@ -10,15 +11,19 @@ from Metaclasses import ServerVerify
 from descriptor import Port
 logger=logging.getLogger('server')
 from sqlalchemy import create_engine, and_
-from Database_creation import Client_history, Client_table, Client_list
+from Database_creation import Client_history, Client_table, Client_list, Client_password
 from sqlalchemy.orm import sessionmaker, query
 import threading
-
+import hmac
+import os
+import hashlib
 
 port=7777
 host='localhost'
 database= 'sqlite:///server_base.db3'
 ip=''
+secret_key = b'our_secret_key'
+
 class Server(threading.Thread, metaclass=ServerVerify):
 
     def __init__(self, port, ip, database):
@@ -43,6 +48,11 @@ class Server(threading.Thread, metaclass=ServerVerify):
             try:
                 client, addr = socket.accept()
                 logger.debug(f'Запрос получен от {str(addr)}')
+
+                self.identify(client)
+
+                self.server_authenticate(client)
+
                 self.client_host_port[client] = addr
                 self.clients.append(client)
                 r = []
@@ -66,6 +76,44 @@ class Server(threading.Thread, metaclass=ServerVerify):
             except OSError as e:
                 pass
                 #logger.error(e)
+
+    def server_authenticate(self, connection):
+        message = os.urandom(32)
+        connection.send(message)
+        hash = hmac.new(b'our_secret_key', message, digestmod = hashlib.sha256)
+        digest = hash.digest()
+        response = connection.recv(len(digest))
+        if hmac.compare_digest(digest, response)== False:
+            connection.close()
+
+    def identify(self, client):
+        name_password = client.recv(10000)
+        name_password=json.loads(name_password.decode('utf-8'))
+        client_password = self.session.query(Client_password).filter_by(socket=name_password['name']).first()
+
+        if client_password is None:
+            solt = os.urandom(16)
+            hash_password = hashlib.pbkdf2_hmac('sha256', name_password['password'].encode(), solt, 100000)
+
+            client_password = Client_password(solt + hash_password, name_password['name'])
+            self.session.add(client_password)
+            self.session.commit()
+            print('Client are registered. Try to enter again')
+            client.close()
+        else:
+
+            solt= client_password.password[:16]
+            hash_password = hashlib.pbkdf2_hmac('sha256', name_password['password'].encode(), solt, 100000)
+            if hash_password!=client_password.password[16:]:
+                print('Идентификация не пройдена')
+                client.close()
+            else:
+                return True
+
+    def login_required(func):
+        @wraps(func)
+        def call(*args, **kwargs):
+                pass
 
     def log(func):
         @wraps(func)
