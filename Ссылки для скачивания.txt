@@ -1,0 +1,2 @@
+https://test.pypi.org/project/client-chat-tcp-ip/
+https://test.pypi.org/project/server-chat-tcp-ip/

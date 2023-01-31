@@ -1,0 +1,13 @@
+setup.py
+Server/Database_creation.py
+Server/Metaclasses.py
+Server/__init__.py
+Server/descriptor.py
+Server/launcher.py
+Server/main_window.py
+Server/server.py
+server_chat_tcp_ip.egg-info/PKG-INFO
+server_chat_tcp_ip.egg-info/SOURCES.txt
+server_chat_tcp_ip.egg-info/dependency_links.txt
+server_chat_tcp_ip.egg-info/requires.txt
+server_chat_tcp_ip.egg-info/top_level.txt
