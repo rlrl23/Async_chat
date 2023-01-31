@@ -1,0 +1,15 @@
+2023-01-27 14:06:35,273 - DEBUG    - client_2 - The message {"action": "presence", "time": "Fri Jan 27 14:06:35 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-27 14:06:37,276 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-27 14:07:01,074 - DEBUG    - client_2 - The message {"action": "msg", "text": "hi", "time": "Fri Jan 27 14:07:01 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "Thomas"} is sent
+2023-01-28 17:08:41,765 - DEBUG    - client_2 - The message {"action": "presence", "time": "Sat Jan 28 17:08:41 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-28 17:08:43,767 - DEBUG    - client_2 - The message {"response": 200, "alert": "ok"} is recieved 
+2023-01-28 17:09:09,466 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Sat Jan 28 17:09:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is sent
+2023-01-28 17:09:10,008 - DEBUG    - client_2 - The message {"action": "msg", "text": "hello", "time": "Sat Jan 28 17:09:09 2023", "user": {"name": "Mary", "status": "here"}, "to_user": "all"} is recieved 
+2023-01-28 17:09:10,548 - DEBUG    - client_2 - The message  is recieved 
+2023-01-28 17:09:10,548 - ERROR    - client_2 - Expecting value: line 1 column 1 (char 0)
+2023-01-28 17:09:10,548 - DEBUG    - client_2 - recieve finished
+2023-01-28 17:14:38,034 - DEBUG    - client_2 - The message {"action": "presence", "time": "Sat Jan 28 17:14:38 2023", "user": {"name": "Mary", "status": "here"}} is sent
+2023-01-28 17:14:40,037 - DEBUG    - client_2 - The message  is recieved 
+2023-01-28 17:14:40,037 - ERROR    - client_2 - Expecting value: line 1 column 1 (char 0)
+2023-01-28 17:14:40,037 - DEBUG    - client_2 - recieve finished
+2023-01-28 17:15:13,497 - DEBUG    - client_2 - The message {"action": "add_contact", "user_id": "Mitch", "time": "Sat Jan 28 17:15:13 2023", "user_login": "Mary"} is sent

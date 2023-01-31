@@ -1,0 +1,15 @@
+setup.py
+Client/Client_database_creation.py
+Client/Metaclasses.py
+Client/__init__.py
+Client/client.py
+Client/client_window.py
+Client/client_window_2.py
+Client/client_window_3.py
+Client/descriptor.py
+Client/launcher.py
+client_chat_tcp_ip.egg-info/PKG-INFO
+client_chat_tcp_ip.egg-info/SOURCES.txt
+client_chat_tcp_ip.egg-info/dependency_links.txt
+client_chat_tcp_ip.egg-info/requires.txt
+client_chat_tcp_ip.egg-info/top_level.txt
