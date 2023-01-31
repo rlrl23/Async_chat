@@ -52,8 +52,3 @@ mapper(Contact, contact)
 mapper(Contact_list, contact_list)
 mapper(Msg_history, msg_history)
 
-def get_client_history():
-    msgs_from = self.session.query(Msg_history).filter_by(or_(from_=Mary.name, to_=contact.name)).order_by(
-        desc(Msg_history.id)).limit(6)
-    msgs_to = self.session.query(Msg_history).filter_by(or_(from_=contact.name, to_=Mary.name)).order_by(
-        desc(Msg_history.id)).limit(6)

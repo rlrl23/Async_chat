@@ -28,7 +28,7 @@ socket_lock = threading.Lock()
 class Ui_chatWindow(object):
 
     def setupUi(self, chatWindow):
-
+        """ Main window"""
         chatWindow.setObjectName("chatWindow")
         chatWindow.resize(555, 444)
 
@@ -142,10 +142,6 @@ class Ui_chatWindow(object):
             self.contact_list_2.addItem(str(text))
             self.User.send(self.User.add_contact(text))
 
-    def check_message(self):
-        while 1:
-            if self.User.got_message:
-                self.client_history()
 
     def recieve(self):
         time.sleep(2)
@@ -176,6 +172,7 @@ class Ui_chatWindow(object):
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        """ Login window"""
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
 

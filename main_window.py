@@ -16,6 +16,7 @@ from sqlalchemy import create_engine
 from server import Server
 
 class Ui_MainWindow(object):
+    """Main window"""
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -104,6 +105,7 @@ class Ui_MainWindow(object):
         self.database_name.setText(_translate("MainWindow", "server_base.db3"))
 
     def client_list(self):
+        """Show the client list"""
         engine = create_engine('sqlite:///server_base.db3', echo=True)
         Session = sessionmaker(bind=engine)
         session = Session()
@@ -113,6 +115,7 @@ class Ui_MainWindow(object):
             self.Database.setText(self.Database.text()+'\n'+str(client.id)+'    ' +client.name+'        '+ str(client.is_active))
 
     def client_history(self):
+        """Show the client history"""
         engine = create_engine('sqlite:///server_base.db3', echo=True)
         Session = sessionmaker(bind=engine)
         session = Session()
@@ -124,6 +127,7 @@ class Ui_MainWindow(object):
                     client.come_in)+ '        ' +client.name)
 
     def server_settings(self):
+        """Check the server settings"""
         port=self.port.text()
         ip=self.ip.text()
         database='sqlite:///'+self.path.text()+'/'+self.database_name.text()
